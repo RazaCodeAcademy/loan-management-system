@@ -93,8 +93,11 @@
                               <fieldset class="form-group">
                                 <select class="custom-select" id="customSelect" name="payment_type">
                                   <option selected="">Select Option</option>
-                                  <option value="1" {{ $loanee->payment_type == 1 ? "selected" : '' }}>By Hand</option>
-                                  <option value="2" {{ $loanee->payment_type == 2 ? "selected" : '' }}>Online</option>
+                                  @if (!empty($payment_types))
+                                    @foreach ($payment_types as $payment_type)
+                                      <option value="{{ $payment_type->id }}" {{ $loanee->payment_type == $payment_type->id ? "selected" : '' }}>{{ $payment_type->title }}</option>
+                                    @endforeach
+                                  @endif
                                 </select>
                               </fieldset>
                             </div>

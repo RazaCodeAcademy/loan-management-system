@@ -40,4 +40,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function paymentType()
+    {
+        return $this->belongsTo(PaymentType::class, 'payment_type', 'id');
+    }
 }

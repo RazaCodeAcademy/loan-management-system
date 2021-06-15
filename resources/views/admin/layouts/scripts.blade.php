@@ -29,16 +29,22 @@
 
 
 
-  @if(session()->has('success'))
+    @if(session()->has('success'))
         <script>
             toastr.info("{{ session()->get('success') }}");
         </script>
+        @php
+            Session::forget('success')
+        @endphp
     @endif
 
     @if(session()->has('error'))
         <script>
             toastr.error("{{ session()->get('error') }}");
         </script>
+        @php
+            Session::forget('error')
+        @endphp
     @endif
 
   @yield('scripts')

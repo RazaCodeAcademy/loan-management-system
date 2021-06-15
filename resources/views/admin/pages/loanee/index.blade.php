@@ -24,7 +24,7 @@
         </div>
         <div class="content-header-right col-md-6 col-12">
           <div class="float-md-right">
-            <a href="{{ route('loanee.create') }}" class="btn btn-primary round btn-glow px-2 text-white">Add Slider</a>
+            <a href="{{ route('loanee.create') }}" class="btn btn-primary round btn-glow px-2 text-white">Add Loanee</a>
             </div>
           </div>
         </div>
@@ -64,13 +64,13 @@
                       </thead>
                       <tbody>
                         @if (!empty($loanees))
-                          @foreach ($loanees as $loanee)
+                        @foreach ($loanees as $loanee)
                             <tr>
                               <td class="align-middle">{{ $loanee->id ?? ''}}</td>
                               <td class="align-middle">{{ $loanee->name ?? ''}}</td>
                               <td class="align-middle">{{ $loanee->email ?? ''}}</td>
                               <td class="align-middle">{{ $loanee->phone ?? ''}}</td>
-                              <td class="align-middle">{{ $loanee->payment_type == 1 ? 'By Hand' : 'Online'}}</td>
+                              <td class="align-middle">{{ $loanee->paymentType->title ?? ''}}</td>
                               <td class="align-middle">
                                 <a href="{{ route('loanee.edit', $loanee->id) }}" class="btn btn-info mx-1"><i class="la la-copy"></i></a>
                               </td>

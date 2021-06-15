@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\User;
-use App\Models\PaymentType;
-
-class LoaneeController extends Controller
+class AgreementController extends Controller
 {
     public function index()
     {
@@ -19,8 +16,7 @@ class LoaneeController extends Controller
 
     public function create()
     {
-        $payment_types = PaymentType::all();
-        return view('admin.pages.loanee.create', compact('payment_types'));
+        return view('admin.pages.loanee.create');
     }
 
     public function store(Request $request)
@@ -75,9 +71,7 @@ class LoaneeController extends Controller
     {
         $loanee = User::find($id);
 
-        $payment_types = PaymentType::all();
-
-        return view('admin.pages.loanee.edit', compact('loanee', 'payment_types'));
+        return view('admin.pages.loanee.edit', compact('loanee'));
     }
 
     public function update(Request $request, $id)

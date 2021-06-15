@@ -52,6 +52,9 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     // Loan page routes
     Route::resource('/loanee', 'LoaneeController');
     Route::get('/loanee/active_deactive/{id}', 'LoaneeController@loaneeStatus')->name('loanee.status');
+
+    // Loan page routes
+    Route::resource('/payment_types', 'PaymentController');
     
 });
 

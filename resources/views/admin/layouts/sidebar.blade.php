@@ -36,6 +36,16 @@
             </li>
           </ul>
         </li>
+        <li class=" nav-item {{ $title == 'Payments' ? 'has-sub menu-collapsed-open' : '' }}"><a href="#"><i class="la la-list"></i><span class="menu-title">Payment Types</span></a>
+          <ul class="menu-content">
+            <li {{ $sub_title == 'Payment Type' ? 'active' : '' }}>
+                <a class="menu-item" href="{{ route('payment_types.index') }}">All Types</a>
+            </li>
+            <li {{ $sub_title == 'Create Payment' ? 'active' : '' }}>
+                <a class="menu-item" href="{{ route('payment_types.create') }}">Add Type</a>
+            </li>
+          </ul>
+        </li>
         <li>
             <a class="nav-item" href="navbar-light.html">
               <i class="la la-money"></i>
