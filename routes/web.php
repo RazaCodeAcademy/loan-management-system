@@ -9,10 +9,15 @@ use Illuminate\Support\Facades\Route;
 | 1.    Admin
 | 2.    Loanee
 | 3.    Customer
-|-----------------------------------Payment Type---------------------------
-| 1.    Online
-| 2.    By Hand
 */
+
+// clear cache
+
+Route::get('/clear', function() {
+    Artisan::call('config:cache');
+    Artisan::call('cache:clear');
+    return "Cache is cleared";
+});
 
 /*
 |--------------------------------------------------------------------------

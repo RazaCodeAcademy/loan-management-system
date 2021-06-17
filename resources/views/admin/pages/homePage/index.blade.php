@@ -117,6 +117,7 @@
    $.fn.dataTableExt.sErrMode = 'none';
    $('#dtTable').DataTable({
       sorting:false,
+      "sScrollX": '100%',
    })
 </script>
     
