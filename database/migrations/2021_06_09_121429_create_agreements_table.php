@@ -14,7 +14,19 @@ class CreateAgreementsTable extends Migration
     public function up()
     {
         Schema::create('agreements', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('loanee_id');
+            $table->double('loan_amount');
+            $table->string('agreement_attachment');
+            $table->timestamp('disbursement_date')->nullable();
+            $table->integer('loan_type');
+            $table->string('payable_type');
+            $table->double('interest_rate');
+            $table->timestamp('expected_first_payment_date')->nullable();;
+            $table->double('late_charges')->nullable();
+            $table->string('product')->nullable();
+            $table->timestamp('cacelation')->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

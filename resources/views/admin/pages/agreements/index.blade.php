@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Loanee')
+@section('title', 'Agreement')
 
-@section('sub_title', 'All Loanee')
+@section('sub_title', 'All Agreements')
 
 @section('content')
 
@@ -16,7 +16,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('loanee.index') }}">@yield('title')</a>
+                <li class="breadcrumb-item"><a href="{{ route('agreement.index') }}">@yield('title')</a>
                 </li>
               </ol>
             </div>
@@ -36,7 +36,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">All Loanee</h4>
+                  <h4 class="card-title">All Agreements</h4>
                   <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                   <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -53,50 +53,54 @@
                         <tr>
                           <th>#</th>
                           <th>Name</th>
-                          <th>Email</th>
-                          <th>Phone</th>
-                          <th>Payment Type</th>
-                          <th>Agreement</th>
-                          <th>Status</th>
+                          <th>Loan Amount</th>
+                          <th>Interest Rate</th>
+                          <th>Loan Type</th>
+                          <th>Payable Type</th>
+                          <th>Late Charges</th>
+                          <th>Disbursement Date</th>
                           <th>Created At</th>
+                          <th>Status</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @if (!empty($loanees))
-                        @foreach ($loanees as $loanee)
+                        @if (!empty($agreements))
+                        @foreach ($agreements as $agreement)
                             <tr>
-                              <td class="align-middle">{{ $loanee->id ?? ''}}</td>
-                              <td class="align-middle">{{ $loanee->name ?? ''}}</td>
-                              <td class="align-middle">{{ $loanee->email ?? ''}}</td>
-                              <td class="align-middle">{{ $loanee->phone ?? ''}}</td>
-                              <td class="align-middle">{{ $loanee->paymentType->title ?? ''}}</td>
+                              <td class="align-middle">{{ $agreement->id ?? ''}}</td>
+                              <td class="align-middle">{{ $agreement->loanee->name ?? ''}}</td>
+                              <td class="align-middle">{{ $agreement->loan_amount ?? ''}}</td>
+                              <td class="align-middle">{{ ($agreement->interest_rate.'%') ?? '%'}}</td>
+                              <td class="align-middle">{{ $agreement->loanType->loan_type ?? ''}}</td>
                               <td class="align-middle">
-                                <a href="{{ route('agreement.create', $loanee->id) }}" class="btn btn-info mx-1"><i class="la la-copy"></i></a>
+                                @if ($agreement->payable_type == 1)
+                                  {{ 'Days' }}
+                                @elseif($agreement->payable_type == 2)
+                                  {{ 'Months' }}
+                                @elseif($agreement->payable_type == 3)
+                                  {{ 'Years' }}
+                                @endif
                               </td>
+                              <td class="align-middle">{{ $agreement->late_charges ?? '' }}</td>
+                              <td class="align-middle">{{ $agreement->disbursement_date->format('d-M-Y') }}</td>
+                              <td class="align-middle">{{ $agreement->created_at->format('d-M-y') ?? ''}}</td>
                               <td class="align-middle">
-                                @if($loanee->status!=1)
-                                  <a href="{{ route('loanee.status', $loanee->id) }}" onclick="return confirm('Are you sure');"
+                                @if($agreement->status!=1)
+                                  <a href="{{ route('agreement.status', $agreement->id) }}" onclick="return confirm('Are you sure');"
                                     class="btn btn-danger btn-block">
                                     Approve	
                                   </a>	
                                 @endif
-
-                                @if($loanee->status==1)
-                                  <a href="{{ route('loanee.status', $loanee->id) }}" onclick="return confirm('Are you sure');"
+                                @if($agreement->status==1)
+                                  <a href="{{ route('agreement.status', $agreement->id) }}" onclick="return confirm('Are you sure');"
                                     class="btn btn-success btn-block">
                                     Reject	
                                   </a>
                                 @endif
                               </td>
-                              <td class="align-middle">{{ $loanee->created_at->format('d-M-y') ?? ''}}</td>
                               <td class="align-middle d-flex">
-                                <a href="{{ route('loanee.show', $loanee->id) }}" class="btn btn-success"><i class="la la-eye"></i></a>
-                                <a href="{{ route('loanee.edit', $loanee->id) }}" class="btn btn-info mx-1"><i class="la la-edit"></i></a>
-                                <form action="{{ route('loanee.destroy', $loanee->id) }}" method="post">
-                                  @method('DELETE')
-                                  <button type="submit" class="btn btn-danger"><i class="la la-trash"></i></button>
-                                </form>
+                                <a href="{{ route('agreement.edit', $agreement->id) }}" class="btn btn-info mx-1"><i class="la la-edit"></i></a>
                               </td>
                             </tr>
                           @endforeach

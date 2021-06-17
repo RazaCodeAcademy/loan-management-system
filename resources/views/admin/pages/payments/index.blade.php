@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Loanee')
+@section('title', 'Payments')
 
-@section('sub_title', 'All Loanee')
+@section('sub_title', 'All Payments')
 
 @section('content')
 
@@ -16,7 +16,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('loanee.index') }}">@yield('title')</a>
+                <li class="breadcrumb-item"><a href="{{ route('payments.index') }}">@yield('title')</a>
                 </li>
               </ol>
             </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="content-header-right col-md-6 col-12">
           <div class="float-md-right">
-            <a href="{{ route('loanee.create') }}" class="btn btn-primary round btn-glow px-2 text-white">Add Loanee</a>
+            <a href="{{ route('payments.create') }}" class="btn btn-primary round btn-glow px-2 text-white">Add Payment</a>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">All Loanee</h4>
+                  <h4 class="card-title">All Payments</h4>
                   <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                   <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -51,53 +51,38 @@
                     <table class="table display nowrap table-striped table-bordered scroll-horizontal w-100" id="dtTable">
                       <thead class="w-100" style="width: 100%">
                         <tr>
-                          <th>#</th>
-                          <th>Name</th>
-                          <th>Email</th>
-                          <th>Phone</th>
-                          <th>Payment Type</th>
+                          <th class="sorting_desc">#</th>
+                          <th>Payer Name</th>
                           <th>Agreement</th>
+                          <th>Amount</th>
+                          <th>Late Charges</th>
+                          <th>Installment</th>
+                          <th>Last Date</th>
                           <th>Status</th>
                           <th>Created At</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @if (!empty($loanees))
-                        @foreach ($loanees as $loanee)
+                        @if (!empty($payments))
+                          @foreach ($payments as $payment)
                             <tr>
-                              <td class="align-middle">{{ $loanee->id ?? ''}}</td>
-                              <td class="align-middle">{{ $loanee->name ?? ''}}</td>
-                              <td class="align-middle">{{ $loanee->email ?? ''}}</td>
-                              <td class="align-middle">{{ $loanee->phone ?? ''}}</td>
-                              <td class="align-middle">{{ $loanee->paymentType->title ?? ''}}</td>
-                              <td class="align-middle">
-                                <a href="{{ route('agreement.create', $loanee->id) }}" class="btn btn-info mx-1"><i class="la la-copy"></i></a>
-                              </td>
-                              <td class="align-middle">
-                                @if($loanee->status!=1)
-                                  <a href="{{ route('loanee.status', $loanee->id) }}" onclick="return confirm('Are you sure');"
-                                    class="btn btn-danger btn-block">
-                                    Approve	
-                                  </a>	
-                                @endif
-
-                                @if($loanee->status==1)
-                                  <a href="{{ route('loanee.status', $loanee->id) }}" onclick="return confirm('Are you sure');"
-                                    class="btn btn-success btn-block">
-                                    Reject	
-                                  </a>
-                                @endif
-                              </td>
-                              <td class="align-middle">{{ $loanee->created_at->format('d-M-y') ?? ''}}</td>
+                              <td class="align-middle">{{ $payment->id ?? ''}}</td>
+                              <td class="align-middle">{{ $payment->payer_name ?? ''}}</td>
+                              <td class="align-middle">{{ ('L-00'.$payment->agreement_id) ?? ''}}</td>
+                              <td class="align-middle">{{ $payment->amount ?? ''}}</td>
+                              <td class="align-middle">{{ $payment->late_charges ?? 0}}</td>
+                              <td class="align-middle">{{ $payment->installment ?? ''}}</td>
+                              <td class="align-middle">{{ $payment->last_date->format('d-M-y') ?? ''}}</td>
+                              <td class="align-middle">{{ $payment->status ? 'Paid' : 'Unpaid'}}</td>
+                              <td class="align-middle">{{ $payment->created_at->format('d-M-y') ?? ''}}</td>
                               <td class="align-middle d-flex">
-                                <a href="{{ route('loanee.show', $loanee->id) }}" class="btn btn-success"><i class="la la-eye"></i></a>
-                                <a href="{{ route('loanee.edit', $loanee->id) }}" class="btn btn-info mx-1"><i class="la la-edit"></i></a>
-                                <form action="{{ route('loanee.destroy', $loanee->id) }}" method="post">
+                                <a href="{{ route('payments.edit', $payment->id) }}" class="btn btn-info mx-1"><i class="la la-edit"></i></a>
+                                <form action="{{ route('payments.destroy', $payment->id) }}" method="post">
                                   @method('DELETE')
-                                  <button type="submit" class="btn btn-danger"><i class="la la-trash"></i></button>
+                                  <button type="submit"  href="" class="btn btn-danger"><i class="la la-trash"></i></button>
                                 </form>
-                              </td>
+                            </td>
                             </tr>
                           @endforeach
                         @endif

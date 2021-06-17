@@ -157,19 +157,4 @@ class LoaneeController extends Controller
             return redirect()->route('loanee.index')->with('error', 'loanee DeActivated Successfuly!');
         }
     }
-
-    public function loanee(Request $request)
-    {
-        $loanee = User::find($id);
-
-        $loanee->status = !$loanee->status;
-
-        $loanee->update();
-
-        if($loanee->status == 1){
-            return redirect()->route('loanee.index')->with('success', 'loanee Activated Successfuly!');
-        }else{
-            return redirect()->route('loanee.index')->with('error', 'loanee DeActivated Successfuly!');
-        }
-    }
 }

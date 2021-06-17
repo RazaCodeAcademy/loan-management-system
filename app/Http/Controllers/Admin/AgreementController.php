@@ -5,62 +5,80 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Loan;
+use App\Models\Agreement;
+
 class AgreementController extends Controller
 {
     public function index()
     {
-        $loanees = User::orderBy('created_at', 'DESC')->get();
-
-        return view('admin.pages.loanee.index', compact('loanees'));
+        $agreements = Agreement::all();
+        return view('admin.pages.agreements.index', compact('agreements'));
     }
 
-    public function create()
+    public function create($loanee_id)
     {
-        return view('admin.pages.loanee.create');
+        $loan_types = Loan::all();
+
+        return view('admin.pages.agreements.create', compact('loanee_id', 'loan_types'));
     }
 
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
-            'name' => 'required',
-            'image' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-            'password' => 'required|confirmed|min:6',
+            'loan_amount' => 'required',
+            'agreement_attachment' => 'required',
+            'disbursement_date' => 'required',
+            'loan_type' => 'required',
+            'payable_type' => 'required',
+            'interest_rate' => 'required',
+            'expected_first_payment_date' => 'required',
+            'late_charges' => 'required',
         ]);
 
-        $loanee = new User();
+        $agreement = new Agreement();
 
-        $loanee->name = $request->name;
+        $agreement->loanee_id = $request->loanee_id;
 
-        $loanee->email = $request->email;
+        $agreement->loan_amount = $request->loan_amount;
 
-        $loanee->phone = $request->phone;
+        $agreement->loan_type = $request->loan_type;
 
-        $loanee->address = $request->address;
+        $agreement->disbursement_date = $request->disbursement_date;
 
-        $loanee->payment_type = $request->payment_type;
+        $agreement->payable_type = $request->payable_type;
 
-        $loanee->password = bcrypt($request->password);
+        $agreement->interest_rate = $request->interest_rate;
 
-        $loanee->role = 2;
+        $agreement->late_charges = $request->late_charges;
 
+        $agreement->expected_first_payment_date = $request->expected_first_payment_date;
 
-        if ($request->hasfile('image')) {
-            $file = $request->file('image');
+        if ($request->hasfile('agreement_attachment')) {
+            $file = $request->file('agreement_attachment');
             $name = $file->getClientOriginalName();
             $extension = $file->getClientOriginalExtension();
             $name = pathinfo($name, PATHINFO_FILENAME);
             $filename = $name.time(). '.' .$extension;
-            $file->move('public/uploads/loanees/',$filename);
-            $loanee->image = '/public/uploads/loanees/'.$filename;
-        }else{
-            $loanee->image = null;
+            $file->move('public/uploads/agreements/',$filename);
+            $agreement->agreement_attachment = '/public/uploads/agreements/'.$filename;
         }
 
-        if($loanee->save()){
-            return redirect()->route('loanee.index')->with('success', 'loanee Added Successfuly!');
+        if ($request->hasfile('product')) {
+            $file = $request->file('product');
+            $name = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $name = pathinfo($name, PATHINFO_FILENAME);
+            $filename = $name.time(). '.' .$extension;
+            $file->move('public/uploads/products/',$filename);
+            $agreement->product = '/public/uploads/products/'.$filename;
+        }else{
+            $agreement->product = null;
+        }
+
+        if($agreement->save()){
+            return redirect()->route('agreements.index')->with('success', 'Agreement Added Successfuly!');
         }else{
             return back()->with('error', 'Something went wrong please try again!');
         }
@@ -69,48 +87,67 @@ class AgreementController extends Controller
 
     public function edit($id)
     {
-        $loanee = User::find($id);
+        $agreement = Agreement::find($id);
+        $loan_types = Loan::all();
 
-        return view('admin.pages.loanee.edit', compact('loanee'));
+        return view('admin.pages.agreements.edit', compact('agreement', 'loan_types'));
     }
 
     public function update(Request $request, $id)
     {
 
         $request->validate([
-            'name' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
+            'loan_amount' => 'required',
+            'disbursement_date' => 'required',
+            'loan_type' => 'required',
+            'payable_type' => 'required',
+            'interest_rate' => 'required',
+            'expected_first_payment_date' => 'required',
+            'late_charges' => 'required',
         ]);
 
-        $loanee = User::find($id);
+        $agreement = Agreement::find($id);
 
-        $loanee->name = $request->name;
+        $agreement->loanee_id = $request->loanee_id;
 
-        $loanee->phone = $request->phone;
+        $agreement->loan_amount = $request->loan_amount;
 
-        $loanee->address = $request->address;
+        $agreement->loan_type = $request->loan_type;
 
-        $loanee->payment_type = $request->payment_type;
+        $agreement->disbursement_date = $request->disbursement_date;
 
-        if($request->password){
-            $loanee->password = bcrypt($request->password);
-        }
+        $agreement->payable_type = $request->payable_type;
 
-        $loanee->role = 2;
+        $agreement->interest_rate = $request->interest_rate;
 
-        if ($request->hasfile('image')) {
-            $file = $request->file('image');
+        $agreement->late_charges = $request->late_charges;
+
+        $agreement->expected_first_payment_date = $request->expected_first_payment_date;
+
+        if ($request->hasfile('agreement_attachment')) {
+            $file = $request->file('agreement_attachment');
             $name = $file->getClientOriginalName();
             $extension = $file->getClientOriginalExtension();
             $name = pathinfo($name, PATHINFO_FILENAME);
             $filename = $name.time(). '.' .$extension;
-            $file->move('public/uploads/loanees/',$filename);
-            $loanee->image = '/public/uploads/loanees/'.$filename;
+            $file->move('public/uploads/agreements/',$filename);
+            $agreement->agreement_attachment = '/public/uploads/agreements/'.$filename;
         }
 
-        if($loanee->update()){
-            return redirect()->route('loanee.index')->with('success', 'loanee Added Successfuly!');
+        if ($request->hasfile('product')) {
+            $file = $request->file('product');
+            $name = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $name = pathinfo($name, PATHINFO_FILENAME);
+            $filename = $name.time(). '.' .$extension;
+            $file->move('public/uploads/products/',$filename);
+            $agreement->product = '/public/uploads/products/'.$filename;
+        }else{
+            $agreement->product = null;
+        }
+
+        if($agreement->update()){
+            return redirect()->route('agreement.index')->with('success', 'Agreement Updated Successfuly!');
         }else{
             return back()->with('error', 'Something went wrong please try again!');
         }
@@ -137,33 +174,18 @@ class AgreementController extends Controller
         }
     }
 
-    public function loaneeStatus($id)
+    public function agreementStatus($id)
     {
-        $loanee = User::find($id);
+        $agreement = Agreement::find($id);
 
-        $loanee->status = !$loanee->status;
+        $agreement->status = !$agreement->status;
 
-        $loanee->update();
+        $agreement->update();
 
-        if($loanee->status == 1){
-            return redirect()->route('loanee.index')->with('success', 'loanee Activated Successfuly!');
+        if($agreement->status == 1){
+            return redirect()->route('agreement.index')->with('success', 'agreement Activated Successfuly!');
         }else{
-            return redirect()->route('loanee.index')->with('error', 'loanee DeActivated Successfuly!');
-        }
-    }
-
-    public function loanee(Request $request)
-    {
-        $loanee = User::find($id);
-
-        $loanee->status = !$loanee->status;
-
-        $loanee->update();
-
-        if($loanee->status == 1){
-            return redirect()->route('loanee.index')->with('success', 'loanee Activated Successfuly!');
-        }else{
-            return redirect()->route('loanee.index')->with('error', 'loanee DeActivated Successfuly!');
+            return redirect()->route('agreement.index')->with('error', 'agreement DeActivated Successfuly!');
         }
     }
 }

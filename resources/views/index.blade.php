@@ -10,17 +10,32 @@
                 <div class="slide-visual">
                     <!-- Slide Image Area (1000 x 424) -->
                     <ul class="slide-group">
-                        <li><img class="img-responsive" src="{{ asset('/public/assets/images/ba1.jpg') }}" alt="Dummy Image" /></li>
-                        <li><img class="img-responsive" src="{{ asset('/public/assets/images/ba2.jpg') }}" alt="Dummy Image" /></li>
-                        <li><img class="img-responsive" src="{{ asset('/public/assets/images/ba3.jpg') }}" alt="Dummy Image" /></li>
+                        @if (!empty($sliders))
+                            @foreach ($sliders as $slider)
+                                <li>
+                                    <img class="img-responsive" src="{{ $slider->image ? asset($slider->image) : asset('/public/assets/images/ba2.jpg') }}" alt="{{ $slider->title }}" />
+                                </li>
+                            @endforeach
+                        @else
+                            <li><img class="img-responsive" src="{{ asset('/public/assets/images/ba1.jpg') }}" alt="Dummy Image" /></li>
+                        @endif
                     </ul>
 
                     <!-- Slide Description Image Area (316 x 328) -->
                     <div class="script-wrap">
                         <ul class="script-group">
-                            <li><div class="inner-script"><img class="img-responsive" src="{{ asset('/public/assets/images/baa1.jpg') }}" alt="Dummy Image" /></div></li>
-                            <li><div class="inner-script"><img class="img-responsive" src="{{ asset('/public/assets/images/baa2.jpg') }}" alt="Dummy Image" /></div></li>
-                            <li><div class="inner-script"><img class="img-responsive" src="{{ asset('/public/assets/images/baa3.jpg') }}" alt="Dummy Image" /></div></li>
+                            @if (!empty($sliders))
+                                @foreach ($sliders as $slider)
+                                    <li>
+                                        <div class="inner-script">
+                                            <img class="img-responsive" src="{{ $slider->image ? asset($slider->image) : asset('/public/assets/images/baa1.jpg') }}" alt="Dummy Image" style="height: 286px; width:276px" />
+                                        </div>
+                                    </li>
+                                    {{-- <img class="img-responsive" src="{{ $slider->image ? asset($slider->image) : asset('/public/assets/images/ba2.jpg') }}" alt="Dummy Image" /> --}}
+                                @endforeach
+                            @else
+                                <li><div class="inner-script"><img class="img-responsive" src="{{ asset('/public/assets/images/baa1.jpg') }}" alt="Dummy Image" /></div></li>
+                            @endif
                         </ul>
                         <div class="slide-controller">
                             <a href="#" class="btn-prev"><img src="{{ asset('/public/assets/images/btn_prev.png') }}" alt="Prev Slide" /></a>

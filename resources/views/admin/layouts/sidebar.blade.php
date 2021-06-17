@@ -47,16 +47,20 @@
           </ul>
         </li>
         <li>
-            <a class="nav-item" href="navbar-light.html">
+            <a class="nav-item" href="{{ route('agreement.index') }}">
               <i class="la la-money"></i>
               <span class="menu-title">All Loans</span>
             </a>
         </li>
-        <li>
-            <a class="nav-item" href="navbar-light.html">
-              <i class="la la-cc-visa"></i>
-              <span class="menu-title">Payments</span>
-            </a>
+        <li class=" nav-item"><a href="#"><i class="la la-cc-visa"></i><span class="menu-title">Payments</span></a>
+          <ul class="menu-content">
+            <li>
+                <a class="menu-item" href="{{ route('payments.index') }}">All Payments</a>
+            </li>
+            <li>
+                <a class="menu-item" href="{{ route('payments.create') }}">Add Payment</a>
+            </li>
+          </ul>
         </li>
         <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title">Services</span></a>
           <ul class="menu-content">
@@ -85,7 +89,7 @@
             </a>
         </li>
         <li>
-          <a class="nav-item" href="navbar-light.html">
+          <a class="nav-item" href="{{ route('contacts.index') }}">
             <i class="la icon-notebook"></i>
             <span class="menu-title">Contacts</span>
           </a>

@@ -25,6 +25,7 @@ Route::namespace('Front')->group(function () {
     Route::get('/', 'IndexController@index')->name('home');
     Route::get('/about-us', 'AboutController@index')->name('about');
     Route::get('/contact-us', 'ContactController@index')->name('contact');
+    Route::post('/contact-us/store', 'ContactController@store')->name('contact.store');
     Route::get('/how-does-it-works', 'HowDoesItWorkController@index')->name('howDoesItWork');
     Route::get('/shop', 'ShopController@index')->name('shop');
     
@@ -46,15 +47,32 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::resource('/slides', 'HomePageController');
     Route::get('/slides/active_deactive/{id}', 'HomePageController@sliderStatus')->name('slides.status');
 
-    // Loan page routes
+    // LoanType page routes
     Route::resource('/loans', 'LoanController');
 
     // Loan page routes
     Route::resource('/loanee', 'LoaneeController');
     Route::get('/loanee/active_deactive/{id}', 'LoaneeController@loaneeStatus')->name('loanee.status');
 
-    // Loan page routes
-    Route::resource('/payment_types', 'PaymentController');
+    // Agreement page routes
+    Route::get('/agreements', 'AgreementController@index')->name('agreement.index');
+    Route::get('/agreement/create/{id}', 'AgreementController@create')->name('agreement.create');
+    Route::post('/agreement/store', 'AgreementController@store')->name('agreement.store');
+    Route::get('/agreement/edit/{id}', 'AgreementController@edit')->name('agreement.edit');
+    Route::put('/agreement/update/{id}', 'AgreementController@update')->name('agreement.update');
+    Route::get('/agreement/status/{id}', 'AgreementController@agreementStatus')->name('agreement.status');
+
+    // Payment Types page routes
+    Route::resource('/payment_types', 'PaymentTypeController');
+
+    // Payment page routes
+    Route::resource('/payments', 'PaymentController');
+    Route::get('/payments/getAgreementInfo/{id}', 'PaymentController@getAgreementInfo')->name('getAgreementInfo');
+
+    // Contact page routes
+    Route::get('/contacts', 'ContactController@index')->name('contacts.index');
+    Route::get('/contacts/readContact/{id}', 'ContactController@readContact')->name('contacts.readContact');
+    Route::delete('/contacts/delete/{id}', 'ContactController@destroy')->name('contacts.destroy');
     
 });
 
