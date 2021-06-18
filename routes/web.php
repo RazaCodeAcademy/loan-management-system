@@ -55,9 +55,12 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     // LoanType page routes
     Route::resource('/loans', 'LoanController');
 
-    // Loan page routes
-    Route::resource('/loanee', 'LoaneeController');
-    Route::get('/loanee/active_deactive/{id}', 'LoaneeController@loaneeStatus')->name('loanee.status');
+    // Category page routes
+    Route::resource('/categories', 'CategoryController');
+    Route::get('/categories/status/{id}', 'CategoryController@status')->name('categories.status');
+
+    // Payment Types page routes
+    Route::resource('/payment_types', 'PaymentTypeController');
 
     // Agreement page routes
     Route::get('/agreements', 'AgreementController@index')->name('agreement.index');
@@ -67,12 +70,21 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::put('/agreement/update/{id}', 'AgreementController@update')->name('agreement.update');
     Route::get('/agreement/status/{id}', 'AgreementController@agreementStatus')->name('agreement.status');
 
-    // Payment Types page routes
-    Route::resource('/payment_types', 'PaymentTypeController');
-
     // Payment page routes
     Route::resource('/payments', 'PaymentController');
     Route::get('/payments/getAgreementInfo/{id}', 'PaymentController@getAgreementInfo')->name('getAgreementInfo');
+
+    // Service page routes
+    Route::resource('/services', 'ServiceController');
+    Route::get('/services/getAgreementInfo/{id}', 'ServiceController@getAgreementInfo')->name('getAgreementInfo');
+
+    // Loanee page routes
+    Route::resource('/loanee', 'LoaneeController');
+    Route::get('/loanee/active_deactive/{id}', 'LoaneeController@loaneeStatus')->name('loanee.status');
+
+    // Product page routes
+    Route::resource('/products', 'ProductController');
+    Route::get('/products/getAgreementInfo/{id}', 'ProductController@getAgreementInfo')->name('getAgreementInfo');
 
     // Contact page routes
     Route::get('/contacts', 'ContactController@index')->name('contacts.index');

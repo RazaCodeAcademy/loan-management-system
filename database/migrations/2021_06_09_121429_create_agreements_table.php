@@ -24,8 +24,9 @@ class CreateAgreementsTable extends Migration
             $table->double('interest_rate');
             $table->timestamp('expected_first_payment_date')->nullable();;
             $table->double('late_charges')->nullable();
-            $table->string('product')->nullable();
-            $table->timestamp('cacelation')->nullable();
+            $table->string('product_name')->nullable();
+            $table->string('product_image')->nullable();
+            $table->timestamp('cancelation')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

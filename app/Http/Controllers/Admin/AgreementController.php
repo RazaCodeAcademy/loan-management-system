@@ -54,6 +54,8 @@ class AgreementController extends Controller
         $agreement->late_charges = $request->late_charges;
 
         $agreement->expected_first_payment_date = $request->expected_first_payment_date;
+        
+        $agreement->product = $request->product;
 
         if ($request->hasfile('agreement_attachment')) {
             $file = $request->file('agreement_attachment');
@@ -124,6 +126,8 @@ class AgreementController extends Controller
 
         $agreement->expected_first_payment_date = $request->expected_first_payment_date;
 
+        $agreement->product_name = $request->product_name;
+
         if ($request->hasfile('agreement_attachment')) {
             $file = $request->file('agreement_attachment');
             $name = $file->getClientOriginalName();
@@ -134,16 +138,16 @@ class AgreementController extends Controller
             $agreement->agreement_attachment = '/public/uploads/agreements/'.$filename;
         }
 
-        if ($request->hasfile('product')) {
-            $file = $request->file('product');
+        if ($request->hasfile('product_image')) {
+            $file = $request->file('product_image');
             $name = $file->getClientOriginalName();
             $extension = $file->getClientOriginalExtension();
             $name = pathinfo($name, PATHINFO_FILENAME);
             $filename = $name.time(). '.' .$extension;
             $file->move('public/uploads/products/',$filename);
-            $agreement->product = '/public/uploads/products/'.$filename;
+            $agreement->product_image = '/public/uploads/products/'.$filename;
         }else{
-            $agreement->product = null;
+            $agreement->product_image = null;
         }
 
         if($agreement->update()){

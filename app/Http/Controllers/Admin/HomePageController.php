@@ -34,7 +34,6 @@ class HomePageController extends Controller
 
         $slider->description = $request->description;
 
-
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $name = $file->getClientOriginalName();

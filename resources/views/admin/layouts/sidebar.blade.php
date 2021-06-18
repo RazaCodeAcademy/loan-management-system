@@ -36,6 +36,16 @@
             </li>
           </ul>
         </li>
+        <li class=" nav-item {{ $title == 'Loans' ? 'has-sub menu-collapsed-open' : '' }}"><a href="#"><i class="la la-list"></i><span class="menu-title">Categories</span></a>
+          <ul class="menu-content">
+            <li {{ $sub_title == 'Loan Type' ? 'active' : '' }}>
+                <a class="menu-item" href="{{ route('categories.index') }}">All Category</a>
+            </li>
+            <li {{ $sub_title == 'Create Loan' ? 'active' : '' }}>
+                <a class="menu-item" href="{{ route('categories.create') }}">Add Category</a>
+            </li>
+          </ul>
+        </li>
         <li class=" nav-item {{ $title == 'Payments' ? 'has-sub menu-collapsed-open' : '' }}"><a href="#"><i class="la la-list"></i><span class="menu-title">Payment Types</span></a>
           <ul class="menu-content">
             <li {{ $sub_title == 'Payment Type' ? 'active' : '' }}>
@@ -65,10 +75,10 @@
         <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title">Services</span></a>
           <ul class="menu-content">
             <li>
-                <a class="menu-item" href="navbar-light.html">All Services</a>
+                <a class="menu-item" href="{{ route('services.index') }}">All Services</a>
             </li>
             <li>
-                <a class="menu-item" href="navbar-dark.html">Add Service</a>
+                <a class="menu-item" href="{{ route('services.create') }}">Add Service</a>
             </li>
           </ul>
         </li>
@@ -82,11 +92,15 @@
             </li>
           </ul>
         </li>
-        <li>
-            <a class="nav-item" href="navbar-light.html">
-              <i class="la icon-bag"></i>
-              <span class="menu-title">Products</span>
-            </a>
+        <li class=" nav-item"><a href="#"><i class="la icon-bag"></i><span class="menu-title">Products</span></a>
+          <ul class="menu-content">
+            <li>
+                <a class="menu-item" href="{{ route('products.index') }}">All Products</a>
+            </li>
+            <li>
+                <a class="menu-item" href="{{ route('products.create') }}">Add Product</a>
+            </li>
+          </ul>
         </li>
         <li>
           <a class="nav-item" href="{{ route('contacts.index') }}">
