@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Loanee')
+@section('title', 'Services')
 
-@section('sub_title', 'Update Agreement')
+@section('sub_title', 'Update Service')
 
 @section('content')
   <div class="app-content content">
@@ -15,7 +15,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('loanee.index') }}">@yield('title')</a>
+                <li class="breadcrumb-item"><a href="{{ route('services.index') }}">@yield('title')</a>
                 </li>
               </ol>
             </div>
@@ -31,46 +31,32 @@
               <div class="card">
                 <div class="card-content collapse show">
                   <div class="card-body">
-                    <h2 class="text-center my-1">Update Agreement</h2>
-                    <form action="{{ route('agreement.update', $agreement->id) }}" method="post" enctype="multipart/form-data">
+                    <h2 class="text-center my-1">Update Service</h2>
+                    <form action="{{ route('services.update', $service->id) }}" method="post" enctype="multipart/form-data">
                       @method('PUT')
-                      <input type="hidden" name="loanee_id" value="{{ $agreement->loanee_id }}">
                       <div class="form-body">
                         <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-12">
                             <div class="form-group">
-                              <label>Enter Loan Amount</label>
-                              <input type="number" name="loan_amount" value="{{ $agreement->loan_amount }}" class="form-control" placeholder="Loan Amount..." min="1" required>
-                              @if ($errors->has('loan_amount'))
-                                @foreach ($errors->get('loan_amount') as $error)
-                                  <span class="text-danger">{{ $error }}</span>
-                                @endforeach
-                              @endif
+                              <label>Enter Title</label>
+                              <input type="text" name="title" value="{{ $service->title }}" class="form-control" placeholder="Title..." required>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Enter Description</label>
+                              <textarea type="text" name="description" rows="10" class="form-control" placeholder="Description..." required>{{ $service->description }}</textarea>
                             </div>
                           </div>
                           <div class="col-md-6">
-                            <fieldset class="form-group">
-                              <label>Agreement File : </label><a href="{{ asset($agreement->product) }}" download="" alt="">{{ $agreement->product }}</a>
-                              <div class="custom-file">
-                                <input type="file" name="agreement_attachment" class="custom-file-input" id="inputGroupFile01">
-                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                @if ($errors->has('agreement_attachment'))
-                                  @foreach ($errors->get('agreement_attachment') as $error)
-                                    <span class="text-danger">{{ $error }}</span>
-                                  @endforeach
-                                @endif
-                              </div>
-                            </fieldset>
-                          </div>
-                          <div class="col-md-6">
                             <div class="form-group">
-                              <label>Select Loan Type</label>
+                              <label>Select Category</label>
                               <fieldset class="form-group">
-                                <select class="custom-select" id="customSelect" name="loan_type" required>
+                                <select class="custom-select" id="customSelect" name="category_id" required>
                                   <option selected="">Select Option</option>
-                                  @if (!empty($loan_types))
-                                    @foreach ($loan_types as $loan_type)
-                                      <option value="{{ $loan_type->id }}" {{ $loan_type->id == $agreement->loan_type ? 'selected' : '' }}>{{ $loan_type->loan_type }}</option>
+                                  @if (!empty($categories))
+                                    @foreach ($categories as $category)
+                                      <option value="{{ $category->id }}" {{ $category->id == $service->category_id ? 'selected' : '' }}>{{ $category->title }}</option>
                                     @endforeach
                                   @endif
                                 </select>
@@ -78,77 +64,25 @@
                             </div>
                           </div>
                           <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Enter Expected Disbursement Date</label>
-                              <input type="date" name="disbursement_date" value="{{ $agreement->disbursement_date->format('Y-m-d') }}" class="form-control" required>
-                                @if ($errors->has('disbursement_date'))
-                                  @foreach ($errors->get('disbursement_date') as $error)
-                                    <span class="text-danger">{{ $error }}</span>
-                                  @endforeach
-                                @endif
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label>Select Payable Type</label>
-                              <fieldset class="form-group">
-                                <select class="custom-select" id="customSelect" name="payable_type" required>
-                                  <option selected="">Select Option</option>
-                                  <option value="1" {{ $agreement->payable_type == 1 ? 'selected' : '' }}>Days</option>
-                                  <option value="2" {{ $agreement->payable_type == 2 ? 'selected' : '' }}>Weeks</option>
-                                  <option value="3" {{ $agreement->payable_type == 3 ? 'selected' : '' }}>Months</option>
-                                </select>
-                              </fieldset>
-                            </div>
-                          </div>
-                          
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Enter Interest Rate %</label>
-                              <input type="number" name="interest_rate" value="{{ $agreement->late_charges }}" class="form-control" placeholder="Interest Rate %..." min="1" required>
-                                @if ($errors->has('interest_rate'))
-                                  @foreach ($errors->get('interest_rate') as $error)
-                                    <span class="text-danger">{{ $error }}</span>
-                                  @endforeach
-                                @endif
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Enter Late Charges Per Day</label>
-                              <input type="number" name="late_charges" value="{{ $agreement->late_charges }}" class="form-control" placeholder="Late Charges Per Day..." min="1" required>
-                                @if ($errors->has('late_charges'))
-                                  @foreach ($errors->get('late_charges') as $error)
-                                    <span class="text-danger">{{ $error }}</span>
-                                  @endforeach
-                                @endif
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Enter Expected First Payment</label>
-                              <input type="date" name="expected_first_payment_date" value="{{ $agreement->expected_first_payment_date->format('Y-m-d') }}" class="form-control" placeholder="Expected First Payment...">
-                                @if ($errors->has('expected_first_payment_date'))
-                                  @foreach ($errors->get('expected_first_payment_date') as $error)
-                                    <span class="text-danger">{{ $error }}</span>
-                                  @endforeach
-                                @endif
-                            </div>
-                          </div>
-                          <div class="col-md-6">
                             <fieldset class="form-group">
-                              <label>Product Image</label>
+                              <label>Choose Image</label>
                               <div class="custom-file">
-                                <input type="file" name="product" class="custom-file-input" id="inputGroupFile01">
+                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                @if ($errors->has('product'))
-                                  @foreach ($errors->get('product') as $error)
-                                    <span class="text-danger">{{ $error }}</span>
-                                  @endforeach
-                                @endif
                               </div>
                             </fieldset>
-                            <img src="{{ asset($agreement->product) }}" alt="" width="80">
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Enter Discount %</label>
+                              <input type="number" name="discount" value="{{ $service->discount }}" class="form-control" placeholder="Discount %..." min="1" required>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Enter Price</label>
+                              <input type="number" name="price" value="{{ $service->price }}" class="form-control" placeholder="Price..." min="1" required>
+                            </div>
                           </div>
                         </div>
                       </div>

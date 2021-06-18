@@ -76,15 +76,15 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
     // Service page routes
     Route::resource('/services', 'ServiceController');
-    Route::get('/services/getAgreementInfo/{id}', 'ServiceController@getAgreementInfo')->name('getAgreementInfo');
-
+    Route::get('/services/status/{id}', 'ServiceController@status')->name('services.status');
+    
     // Loanee page routes
     Route::resource('/loanee', 'LoaneeController');
     Route::get('/loanee/active_deactive/{id}', 'LoaneeController@loaneeStatus')->name('loanee.status');
-
+    
     // Product page routes
     Route::resource('/products', 'ProductController');
-    Route::get('/products/getAgreementInfo/{id}', 'ProductController@getAgreementInfo')->name('getAgreementInfo');
+    Route::get('/products/status/{id}', 'ProductController@status')->name('products.status');
 
     // Contact page routes
     Route::get('/contacts', 'ContactController@index')->name('contacts.index');

@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Services')
+@section('title', 'Products')
 
-@section('sub_title', 'Create Service')
+@section('sub_title', 'Update Product')
 
 @section('content')
   <div class="app-content content">
@@ -15,7 +15,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('services.index') }}">@yield('title')</a>
+                <li class="breadcrumb-item"><a href="{{ route('products.index') }}">@yield('title')</a>
                 </li>
               </ol>
             </div>
@@ -31,20 +31,21 @@
               <div class="card">
                 <div class="card-content collapse show">
                   <div class="card-body">
-                    <h2 class="text-center my-1">Create Service</h2>
-                    <form action="{{ route('services.store') }}" method="post" enctype="multipart/form-data">
-                     <div class="form-body">
+                    <h2 class="text-center my-1">Update Products</h2>
+                    <form action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
+                      @method('PUT')
+                      <div class="form-body">
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
                               <label>Enter Title</label>
-                              <input type="text" name="title" class="form-control" placeholder="Title..." required>
+                              <input type="text" name="title" value="{{ $product->title }}" class="form-control" placeholder="Title..." required>
                             </div>
                           </div>
                           <div class="col-md-12">
                             <div class="form-group">
                               <label>Enter Description</label>
-                              <textarea type="text" name="description" rows="10" class="form-control" placeholder="Description..." required></textarea>
+                              <textarea type="text" name="description" rows="10" class="form-control" placeholder="Description..." required>{{ $product->description }}</textarea>
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -55,7 +56,7 @@
                                   <option selected="">Select Option</option>
                                   @if (!empty($categories))
                                     @foreach ($categories as $category)
-                                      <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                      <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>{{ $category->title }}</option>
                                     @endforeach
                                   @endif
                                 </select>
@@ -66,7 +67,7 @@
                             <fieldset class="form-group">
                               <label>Choose Image</label>
                               <div class="custom-file">
-                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile01" required>
+                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                               </div>
                             </fieldset>
@@ -74,20 +75,20 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Enter Discount %</label>
-                              <input type="number" name="discount" class="form-control" placeholder="Discount %..." min="1" required>
+                              <input type="number" name="discount" value="{{ $product->discount }}" class="form-control" placeholder="Discount %..." min="1" required>
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Enter Price</label>
-                              <input type="number" name="price" class="form-control" placeholder="Price..." min="1" required>
+                              <input type="number" name="price" value="{{ $product->price }}" class="form-control" placeholder="Price..." min="1" required>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="form-actions">
                         <div class="text-left">
-                          <button type="submit" class="btn btn-primary">Submit <i class="ft-thumbs-up position-left"></i></button>
+                          <button type="submit" class="btn btn-primary">Update <i class="ft-thumbs-up position-left"></i></button>
                           <button type="reset" class="btn btn-warning">Reset <i class="ft-refresh-cw position-left"></i></button>
                         </div>
                       </div>

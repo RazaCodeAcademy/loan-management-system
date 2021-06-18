@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Service;
 use App\Models\Agreement;
+use App\Models\Category;
 
 class ServiceController extends Controller
 {
@@ -19,11 +20,9 @@ class ServiceController extends Controller
 
     public function create()
     {
-        $products = Agreement::where([
-            ['product_name', '!=', Null],
-            ['cancelation', '!=', Null],
-        ])->get();
-        return view('admin.pages.services.create', compact($products));
+        $categories = Category::where('status', true)->get();
+
+        return view('admin.pages.services.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -33,6 +32,14 @@ class ServiceController extends Controller
         $service->title = $request->title;
 
         $service->description = $request->description;
+
+        $service->description = $request->description;
+
+        $service->category_id = $request->category_id;
+
+        $service->discount = $request->discount;
+
+        $service->price = $request->price;
 
         if ($request->hasfile('image')) {
             $file = $request->file('image');
@@ -47,7 +54,7 @@ class ServiceController extends Controller
         }
 
         if($service->save()){
-            return redirect()->route('services.index')->with('success', 'service Added Successfuly!');
+            return redirect()->route('services.index')->with('success', 'Service Added Successfuly!');
         }else{
             return redirect()->route('services.index')->with('error', 'Something went wrong please try again!');
         }
@@ -58,7 +65,9 @@ class ServiceController extends Controller
     {
         $service = Service::find($id);
 
-        return view('admin.pages.services.edit', compact('service'));
+        $categories = Category::where('status', true)->get();
+
+        return view('admin.pages.services.edit', compact('service', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -68,6 +77,14 @@ class ServiceController extends Controller
         $service->title = $request->title;
 
         $service->description = $request->description;
+
+        $service->description = $request->description;
+
+        $service->category_id = $request->category_id;
+
+        $service->discount = $request->discount;
+
+        $service->price = $request->price;
 
         if ($request->hasfile('image')) {
             $file = $request->file('image');
@@ -80,7 +97,7 @@ class ServiceController extends Controller
         }
 
         if($service->update()){
-            return redirect()->route('services.index')->with('success', 'service Updated Successfuly!');
+            return redirect()->route('services.index')->with('success', 'Service Updated Successfuly!');
         }else{
             return redirect()->route('services.index')->with('error', 'Something went wrong please try again!');
         }
@@ -95,7 +112,7 @@ class ServiceController extends Controller
         file_exists($filePath) ? unlink($filePath) : "";
 
         if($service->delete()){
-            return redirect()->route('services.index')->with('success', 'service Deleted Successfuly!');
+            return redirect()->route('services.index')->with('success', 'Service Deleted Successfuly!');
         }else{
             return redirect()->route('services.index')->with('error', 'Something went wrong please try again!');
         }
@@ -110,9 +127,9 @@ class ServiceController extends Controller
         $service->update();
 
         if($service->status == 1){
-            return redirect()->route('services.index')->with('success', 'service Activated Successfuly!');
+            return redirect()->route('services.index')->with('success', 'Service Activated Successfuly!');
         }else{
-            return redirect()->route('services.index')->with('error', 'service DeActivated Successfuly!');
+            return redirect()->route('services.index')->with('error', 'Service DeActivated Successfuly!');
         }
     }
 }

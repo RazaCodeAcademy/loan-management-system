@@ -27,6 +27,7 @@ class CreateAgreementsTable extends Migration
             $table->string('product_name')->nullable();
             $table->string('product_image')->nullable();
             $table->timestamp('cancelation')->nullable();
+            $table->boolean('isRead')->default(1);
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

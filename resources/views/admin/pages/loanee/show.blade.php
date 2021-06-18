@@ -45,7 +45,7 @@
                   </ul>
                 </div>
                 <div class="text-center">
-                  <a href="#" class="btn btn-outline-info mr-1 mb-1">
+                  <a href="{{ route('agreement.create', $loanee->id) }}" class="btn btn-outline-info mr-1 mb-1">
                     <span>Agreement</span>
                   </a>
                 </div>

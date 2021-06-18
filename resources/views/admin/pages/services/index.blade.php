@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Agreement')
+@section('title', 'Services')
 
-@section('sub_title', 'All Agreements')
+@section('sub_title', 'All Services')
 
 @section('content')
 
@@ -16,7 +16,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('agreement.index') }}">@yield('title')</a>
+                <li class="breadcrumb-item"><a href="{{ route('services.index') }}">@yield('title')</a>
                 </li>
               </ol>
             </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="content-header-right col-md-6 col-12">
           <div class="float-md-right">
-            <a href="{{ route('loanee.create') }}" class="btn btn-primary round btn-glow px-2 text-white">Add Loanee</a>
+            <a href="{{ route('services.create') }}" class="btn btn-primary round btn-glow px-2 text-white">Add Products</a>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">All Agreements</h4>
+                  <h4 class="card-title">All Services</h4>
                   <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                   <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -52,55 +52,51 @@
                       <thead class="w-100" style="width: 100%">
                         <tr>
                           <th>#</th>
-                          <th>Name</th>
-                          <th>Loan Amount</th>
-                          <th>Interest Rate</th>
-                          <th>Loan Type</th>
-                          <th>Payable Type</th>
-                          <th>Late Charges</th>
-                          <th>Disbursement Date</th>
+                          <th>Title</th>
+                          <th>Description</th>
+                          <th>Category</th>
+                          <th>Image</th>
+                          <th>Discount</th>
+                          <th>Price</th>
                           <th>Created At</th>
                           <th>Status</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @if (!empty($agreements))
-                        @foreach ($agreements as $agreement)
+                        @if (!empty($services))
+                        @foreach ($services as $service)
                             <tr>
-                              <td class="align-middle">{{ $agreement->id ?? ''}}</td>
-                              <td class="align-middle">{{ $agreement->loanee->name ?? ''}}</td>
-                              <td class="align-middle">{{ $agreement->loan_amount ?? ''}}</td>
-                              <td class="align-middle">{{ ($agreement->interest_rate.'%') ?? '%'}}</td>
-                              <td class="align-middle">{{ $agreement->loanType->loan_type ?? ''}}</td>
+                              <td class="align-middle">{{ $service->id ?? ''}}</td>
+                              <td class="align-middle">{{ $service->title ?? ''}}</td>
+                              <td class="align-middle">{{ $service->description ?? ''}}</td>
+                              <td class="align-middle">{{ $service->category->title ?? ''}}</td>
                               <td class="align-middle">
-                                @if ($agreement->payable_type == 1)
-                                  {{ 'Days' }}
-                                @elseif($agreement->payable_type == 2)
-                                  {{ 'Months' }}
-                                @elseif($agreement->payable_type == 3)
-                                  {{ 'Years' }}
-                                @endif
+                                <img src="{{ $service->image ? asset($service->image) : ''}}" alt="{{ $service->title ?? ''}}" width="50">
                               </td>
-                              <td class="align-middle">{{ $agreement->late_charges ?? '' }}</td>
-                              <td class="align-middle">{{ $agreement->disbursement_date->format('d-M-Y') }}</td>
-                              <td class="align-middle">{{ $agreement->created_at->format('d-M-y') ?? ''}}</td>
+                              <td class="align-middle">{{ ($service->discount.'%') ?? '0%'}}</td>
+                              <td class="align-middle">{{ $service->price ?? '' }}</td>
+                              <td class="align-middle">{{ $service->created_at->format('d-M-y') ?? ''}}</td>
                               <td class="align-middle">
-                                @if($agreement->status!=1)
-                                  <a href="{{ route('agreement.status', $agreement->id) }}" onclick="return confirm('Are you sure');"
+                                @if($service->status!=1)
+                                  <a href="{{ route('services.status', $service->id) }}" onclick="return confirm('Are you sure');"
                                     class="btn btn-danger btn-block">
                                     Approve	
                                   </a>	
                                 @endif
-                                @if($agreement->status==1)
-                                  <a href="{{ route('agreement.status', $agreement->id) }}" onclick="return confirm('Are you sure');"
+                                @if($service->status==1)
+                                  <a href="{{ route('services.status', $service->id) }}" onclick="return confirm('Are you sure');"
                                     class="btn btn-success btn-block">
                                     Reject	
                                   </a>
                                 @endif
                               </td>
                               <td class="align-middle d-flex">
-                                <a href="{{ route('agreement.edit', $agreement->id) }}" class="btn btn-info mx-1"><i class="la la-edit"></i></a>
+                                <a href="{{ route('services.edit', $service->id) }}" class="btn btn-info mx-1"><i class="la la-edit"></i></a>
+                                <form action="{{ route('services.destroy', $service->id) }}" method="post">
+                                  @method('DELETE')
+                                  <button type="submit" class="btn btn-danger"><i class="la la-trash"></i></button>
+                                </form>
                               </td>
                             </tr>
                           @endforeach

@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Services')
+@section('title', 'Products')
 
-@section('sub_title', 'Create Service')
+@section('sub_title', 'Create Product')
 
 @section('content')
   <div class="app-content content">
@@ -15,7 +15,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('services.index') }}">@yield('title')</a>
+                <li class="breadcrumb-item"><a href="{{ route('products.index') }}">@yield('title')</a>
                 </li>
               </ol>
             </div>
@@ -31,14 +31,23 @@
               <div class="card">
                 <div class="card-content collapse show">
                   <div class="card-body">
-                    <h2 class="text-center my-1">Create Service</h2>
-                    <form action="{{ route('services.store') }}" method="post" enctype="multipart/form-data">
+                    <h2 class="text-center my-1">Create Product</h2>
+                    <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
                      <div class="form-body">
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label>Enter Title</label>
-                              <input type="text" name="title" class="form-control" placeholder="Title..." required>
+                              <label>Select Product</label>
+                              <fieldset class="form-group">
+                                <select class="custom-select" id="customSelect" name="title" required>
+                                  <option selected="">Select Option</option>
+                                  @if (!empty($products))
+                                    @foreach ($products as $product)
+                                      <option value="{{ $product->product_name }}">{{ $product->loanee->name .' | L00'. $product->id .' | '. $product->product_name }}</option>
+                                    @endforeach
+                                  @endif
+                                </select>
+                              </fieldset>
                             </div>
                           </div>
                           <div class="col-md-12">

@@ -1,15 +1,4 @@
 
-<!-- header -->
-<div class="header">
-	<div class="container">
-		<ul>
-			<li><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Free and Fast Delivery</li>
-			<li><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Free shipping On all orders</li>
-			<li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:info@example.com">info@example.com</a></li>
-		</ul>
-	</div>
-</div>
-<!-- //header -->
 <!-- header-bot -->
 <div class="header-bot">
 	<div class="container">
