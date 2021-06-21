@@ -42,6 +42,9 @@
         .dataTables_scrollHeadInner{
             width: 100% !important;
         }
+        div.dataTables_wrapper {
+          overflow-x: auto;
+      }
     </style>
 
     @yield('css')

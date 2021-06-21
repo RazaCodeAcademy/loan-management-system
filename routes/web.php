@@ -86,6 +86,10 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::resource('/products', 'ProductController');
     Route::get('/products/status/{id}', 'ProductController@status')->name('products.status');
 
+    // Packages page routes
+    Route::resource('/packages', 'PackageController');
+    Route::get('/packages/items/{id}', 'PackageController@itemRemove')->name('packages.point');
+
     // Contact page routes
     Route::get('/contacts', 'ContactController@index')->name('contacts.index');
     Route::get('/contacts/readContact/{id}', 'ContactController@readContact')->name('contacts.readContact');

@@ -102,6 +102,16 @@
             </li>
           </ul>
         </li>
+        <li class=" nav-item"><a href="#"><i class="la la-gift"></i><span class="menu-title">Packages</span></a>
+          <ul class="menu-content">
+            <li>
+                <a class="menu-item" href="{{ route('packages.index') }}">All Packages</a>
+            </li>
+            <li>
+                <a class="menu-item" href="{{ route('packages.create') }}">Add Package</a>
+            </li>
+          </ul>
+        </li>
         <li>
           <a class="nav-item" href="{{ route('contacts.index') }}">
             <i class="la la-book"></i>

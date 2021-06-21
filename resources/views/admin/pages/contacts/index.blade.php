@@ -42,7 +42,7 @@
                 </div>
                 <div class="card-content collapse show">
                   <div class="card-body card-dashboard">
-                    <table class="table display nowrap table-striped table-bordered scroll-horizontal w-100" id="dtTable">
+                    <table class="table display nowrap table-striped table-bordered w-100" id="dtTable">
                       <thead class="w-100" style="width: 100%">
                         <tr>
                           <th class="sorting_desc">#</th>
@@ -93,7 +93,6 @@
     $.fn.dataTableExt.sErrMode = 'none';
     $('#dtTable').DataTable({
         sorting:false,
-        "sScrollX": '100%',
     })
 
     function tableRowClick(id) {

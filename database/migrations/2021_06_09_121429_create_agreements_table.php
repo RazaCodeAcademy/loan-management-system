@@ -26,6 +26,7 @@ class CreateAgreementsTable extends Migration
             $table->double('late_charges')->nullable();
             $table->string('product_name')->nullable();
             $table->string('product_image')->nullable();
+            $table->boolean('admin_product')->default(0);
             $table->timestamp('cancelation')->nullable();
             $table->boolean('isRead')->default(1);
             $table->boolean('status')->default(0);
