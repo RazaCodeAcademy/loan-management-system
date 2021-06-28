@@ -31,7 +31,17 @@ Route::namespace('Front')->group(function () {
     Route::get('/pages/{slug}', 'PageController@index')->name('pages');
     Route::get('/contact-us', 'ContactController@index')->name('contact');
     Route::post('/contact-us/store', 'ContactController@store')->name('contact.store');
+
+    // shopping and shopping cart routes
     Route::get('/shop', 'ShopController@index')->name('shop');
+    Route::get('/shop/show/{id}', 'ShopController@show')->name('shop.show');
+    Route::get('/shop/cart', 'ShopController@shoppingCart')->name('shop.cart');
+    Route::get('/shop/add-to-cart/{id}', 'ShopController@addtocart')->name('shop.addToCart');
+    Route::get('/reduce/{id}', 'ShopController@getReduceByOne')->name('shop.reduceByOne');
+    Route::get('/remove/{id}', 'ShopController@getRemoveItem')->name('shop.removeItem');
+    Route::get('/emptyCart', 'ShopController@emptyCart')->name('shop.emptyCart');
+
+
     
 });
 

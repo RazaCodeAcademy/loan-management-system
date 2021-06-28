@@ -69,10 +69,10 @@
                             <tr>
                               <td class="align-middle">{{ $product->id ?? ''}}</td>
                               <td class="align-middle">{{ $product->title ?? ''}}</td>
-                              <td class="align-middle">{{ $product->description ?? ''}}</td>
+                              <td class="align-middle">{{ (substr(($product->description !='' ? ucfirst($product->description) : 'N/A'),0,20)).'. . .' }}</td>
                               <td class="align-middle">{{ $product->category->title ?? ''}}</td>
                               <td class="align-middle">
-                                <img src="{{ $product->image ? asset($product->image) : ''}}" alt="{{ $product->title ?? ''}}" width="50">
+                                <img src="{{ $product->image ? asset($product->image) : ''}}" alt="{{ $product->title ?? ''}}" width="50" height="50">
                               </td>
                               <td class="align-middle">{{ ($product->discount.'%') ?? '0%'}}</td>
                               <td class="align-middle">{{ $product->price ?? '' }}</td>

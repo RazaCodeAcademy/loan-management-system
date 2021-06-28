@@ -57,7 +57,6 @@
                         @if (!empty($contacts))
                           @foreach ($contacts as $contact)
                             <tr id="{{ $contact->status ? null : $contact->id  }}" class="{{ $contact->status ? '' : 'bg-light' }}" onclick="tableRowClick({{ $contact->status ? null : $contact->id  }})">
-                              <a href="{{ route('howDoesItWork') }}">
                               <td class="align-middle">{{ $contact->id ?? ''}}</td>
                               <td class="align-middle">{{ $contact->name ?? ''}}</td>
                               <td class="align-middle">{{ $contact->email ?? '' }}</td>
@@ -70,7 +69,6 @@
                                 </form>
                               </td>
                             </tr>
-                          </a>
                           @endforeach
                         @endif
                       </tbody>
