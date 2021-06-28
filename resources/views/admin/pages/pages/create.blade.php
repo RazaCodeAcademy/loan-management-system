@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Products')
+@section('title', 'Pages')
 
-@section('sub_title', 'Create Product')
+@section('sub_title', 'Create Pages')
 
 @section('content')
   <div class="app-content content">
@@ -15,7 +15,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('products.index') }}">@yield('title')</a>
+                <li class="breadcrumb-item"><a href="{{ route('page.index') }}">@yield('title')</a>
                 </li>
               </ol>
             </div>
@@ -31,23 +31,14 @@
               <div class="card">
                 <div class="card-content collapse show">
                   <div class="card-body">
-                    <h2 class="text-center my-1">Create Product</h2>
-                    <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
+                    <h2 class="text-center my-1">Create Page</h2>
+                    <form action="{{ route('page.store') }}" method="post" enctype="multipart/form-data">
                      <div class="form-body">
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label>Select Product</label>
-                              <fieldset class="form-group">
-                                <select class="custom-select" id="customSelect" name="agreement_id" required>
-                                  <option selected="">Select Option</option>
-                                  @if (!empty($products))
-                                    @foreach ($products as $product)
-                                      <option value="{{ $product->id }}">{{ $product->loanee->name .' | L00'. $product->id .' | '. $product->product_name }}</option>
-                                    @endforeach
-                                  @endif
-                                </select>
-                              </fieldset>
+                              <label>Enter Title</label>
+                              <input type="text" name="title" class="form-control" placeholder="Title..." required>
                             </div>
                           </div>
                           <div class="col-md-12">
@@ -56,22 +47,7 @@
                               <textarea type="text" name="description" rows="10" class="form-control" placeholder="Description..." required></textarea>
                             </div>
                           </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Select Category</label>
-                              <fieldset class="form-group">
-                                <select class="custom-select" id="customSelect" name="category_id" required>
-                                  <option selected="">Select Option</option>
-                                  @if (!empty($categories))
-                                    @foreach ($categories as $category)
-                                      <option value="{{ $category->id }}">{{ $category->title }}</option>
-                                    @endforeach
-                                  @endif
-                                </select>
-                              </fieldset>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
+                          <div class="col-md-12">
                             <fieldset class="form-group">
                               <label>Choose Image</label>
                               <div class="custom-file">
@@ -79,18 +55,6 @@
                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                               </div>
                             </fieldset>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Enter Discount %</label>
-                              <input type="number" name="discount" class="form-control" placeholder="Discount %..." min="1" required>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Enter Price</label>
-                              <input type="number" name="price" class="form-control" placeholder="Price..." min="1" required>
-                            </div>
                           </div>
                         </div>
                       </div>

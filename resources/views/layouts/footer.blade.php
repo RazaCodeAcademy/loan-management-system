@@ -95,39 +95,38 @@
 <div class="footer">
 	<div class="container">
 		<div class="col-md-3 footer-left">
-			<h2><a href="index.html"><img src="{{  asset('/public/assets/images/logo3.jpg') }}" alt=" " /></a></h2>
-			<p>Neque porro quisquam est, qui dolorem ipsum quia dolor
-			sit amet, consectetur, adipisci velit, sed quia non 
-			numquam eius modi tempora incidunt ut labore 
-			et dolore magnam aliquam quaerat voluptatem.</p>
+			<h2><a href="index.html"><img src="{{ $companyInfo->logo ? asset($companyInfo->logo) : asset('/public/assets/images/logo3.jpg') }}" alt="{{ $companyInfo->name }} " /></a></h2>
+			<p>{{ $companyInfo->description }}</p>
 		</div>
 		<div class="col-md-9 footer-right">
 			<div class="sign-grds">
 				<div class="col-md-4 sign-gd">
 					<h4>Information</h4>
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="mens.html">Men's Wear</a></li>
-						<li><a href="womens.html">Women's Wear</a></li>
-						<li><a href="electronics.html">Electronics</a></li>
-						<li><a href="codes.html">Short Codes</a></li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="{{ route('home') }}">Home</a></li>
+						@if(!empty($pages))
+							@foreach ($pages as $page)
+								<li><a href="{{ route('pages', $page->slug) }}">{{ $page->title }}</a></li>
+							@endforeach
+						@endif
+						<li><a href="{{ route('contact') }}">Contact Us</a></li>
+						<li><a href="{{ route('shop') }}">Shop</a></li>
 					</ul>
 				</div>
 				
 				<div class="col-md-4 sign-gd-two">
 					<h4>Store Information</h4>
 					<ul>
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Address : 1234k Avenue, 4th block, <span>Newyork City.</span></li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a href="mailto:info@example.com">info@example.com</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone : +1234 567 567</li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Address : {{ $companyInfo->address }}</li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a href="mailto:{{ $companyInfo->email }}">{{ $companyInfo->email }}</a></li>
+						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone : {{ $companyInfo->contact1 }}</li>
 					</ul>
 				</div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
 		<div class="clearfix"></div>
-		<p class="copy-right">&copy {{ date('Y') }} Smart Shop. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+		<p class="copy-right">&copy {{ date('Y') }} {{ $companyInfo->name }}. All rights reserved | Design by <a href="http://sjsolutionz.com/">SJ Solutions</a></p>
 	</div>
 </div>
 <!-- //footer -->

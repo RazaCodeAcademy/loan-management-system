@@ -24,3 +24,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 @else
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 @endif
+
+@yield('css')

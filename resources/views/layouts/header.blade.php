@@ -3,7 +3,7 @@
 <div class="header-bot">
 	<div class="container">
 		<div class="col-md-3 header-left">
-			<h1><a href="index.html"><img src="{{ asset('/public/assets/images/logo3.jpg') }}"></a></h1>
+			<h1><a href="{{ route('home') }}"><img src="{{ !empty($companyInfo->logo) ? asset($companyInfo->logo) : asset('/public/assets/images/logo3.jpg') }}"></a></h1>
 		</div>
 		<div class="col-md-6 header-middle">
 			<form>
@@ -61,8 +61,11 @@
 				<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav menu__list">
 					<li class="active menu__item menu__item--current"><a class="menu__link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a></li>
-					<li class=" menu__item"><a class="menu__link" href="{{ route('about') }}">About Us</a></li>
-					<li class=" menu__item"><a class="menu__link" href="{{ route('howDoesItWork') }}">How does it work</a></li>
+					@if(!empty($pages))
+						@foreach ($pages as $page)
+							<li class=" menu__item"><a class="menu__link" href="{{ route('pages', $page->slug) }}">{{ $page->title }}</a></li>
+						@endforeach
+					@endif
 					<li class=" menu__item"><a class="menu__link" href="{{ route('contact') }}">contact Us</a></li>
 					<li class=" menu__item"><a class="menu__link" href="{{ route('shop') }}">Shop</a></li>
 				</ul>

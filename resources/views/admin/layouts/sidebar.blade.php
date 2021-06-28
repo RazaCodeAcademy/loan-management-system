@@ -1,6 +1,7 @@
   @php
     $title = app()->view->getSections()['title'];
     $sub_title = app()->view->getSections()['sub_title'] ?? '';
+  //  dd($sub_title)
   @endphp
   <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="main-menu-content">
@@ -33,6 +34,16 @@
             </li>
             <li {{ $sub_title == 'Create Loan' ? 'active' : '' }}>
                 <a class="menu-item" href="{{ route('loans.create') }}">Add Type</a>
+            </li>
+          </ul>
+        </li>
+        <li class=" nav-item {{ $title == 'Company Info' ? 'has-sub menu-collapsed-open' : '' }}"><a href="#"><i class="la la-info-circle"></i><span class="menu-title">Company Info</span></a>
+          <ul class="menu-content">
+            <li {{ $sub_title == 'All Info' ? 'active' : '' }}>
+                <a class="menu-item" href="{{ route('company.index') }}">All Info</a>
+            </li>
+            <li {{ $sub_title == 'Create Info' ? 'active' : '' }}>
+                <a class="menu-item" href="{{ route('company.create') }}">Add Info</a>
             </li>
           </ul>
         </li>
@@ -117,6 +128,16 @@
             <i class="la la-book"></i>
             <span class="menu-title">Contacts</span>
           </a>
+        </li>
+        <li class=" nav-item {{ $title == 'Pages' ? 'has-sub menu-collapsed-open' : '' }}"><a href="#"><i class="la la-file-text"></i><span class="menu-title">Pages</span></a>
+          <ul class="menu-content">
+            <li {{ $sub_title == 'All Pages' ? 'active' : '' }}>
+                <a class="menu-item" href="{{ route('page.index') }}">All Pages</a>
+            </li>
+            <li {{ $sub_title == 'Create Page' ? 'active' : '' }}>
+                <a class="menu-item" href="{{ route('page.create') }}">Add Page</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

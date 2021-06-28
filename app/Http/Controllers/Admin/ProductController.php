@@ -23,6 +23,7 @@ class ProductController extends Controller
         $products = Agreement::where([
             ['product_name', '!=', Null],
             ['cancelation', '!=', Null],
+            ['admin_product', 0],
         ])->get();
 
         $categories = Category::where('status', true)->get();
@@ -32,9 +33,18 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        // asign loanee product to admin
+        $agreement = Agreement::find($request->agreement_id);
+
+        $agreement->admin_product = 1;
+
+        // new product create
+
         $product = new Product();
 
-        $product->title = $request->title;
+        $product->title = $agreement->product_name;
+
+        $product->agreement_id = $request->agreement_id;
 
         $product->description = $request->description;
 
@@ -58,7 +68,7 @@ class ProductController extends Controller
             $product->image = null;
         }
 
-        if($product->save()){
+        if($product->save() && $agreement->update()){
             return redirect()->route('products.index')->with('success', 'Product Added Successfuly!');
         }else{
             return redirect()->route('products.index')->with('error', 'Something went wrong please try again!');

@@ -136,13 +136,24 @@
                             </div>
                           </div>
                           <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Enter Product Title</label>
+                              <input type="text" name="product_name" value="{{ $agreement->product_name }}" class="form-control" placeholder="Product Title...">
+                                @if ($errors->has('product_name'))
+                                  @foreach ($errors->get('product_name') as $error)
+                                    <span class="text-danger">{{ $error }}</span>
+                                  @endforeach
+                                @endif
+                            </div>
+                          </div>
+                          <div class="col-md-6">
                             <fieldset class="form-group">
                               <label>Product Image</label>
                               <div class="custom-file">
-                                <input type="file" name="product" class="custom-file-input" id="inputGroupFile01">
+                                <input type="file" name="product_image" class="custom-file-input" id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                @if ($errors->has('product'))
-                                  @foreach ($errors->get('product') as $error)
+                                @if ($errors->has('product_image'))
+                                  @foreach ($errors->get('product_image') as $error)
                                     <span class="text-danger">{{ $error }}</span>
                                   @endforeach
                                 @endif

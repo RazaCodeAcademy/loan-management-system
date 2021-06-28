@@ -28,10 +28,9 @@ Route::get('/clear', function() {
 Route::namespace('Front')->group(function () {
 
     Route::get('/', 'IndexController@index')->name('home');
-    Route::get('/about-us', 'AboutController@index')->name('about');
+    Route::get('/pages/{slug}', 'PageController@index')->name('pages');
     Route::get('/contact-us', 'ContactController@index')->name('contact');
     Route::post('/contact-us/store', 'ContactController@store')->name('contact.store');
-    Route::get('/how-does-it-works', 'HowDoesItWorkController@index')->name('howDoesItWork');
     Route::get('/shop', 'ShopController@index')->name('shop');
     
 });
@@ -58,6 +57,10 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     // Category page routes
     Route::resource('/categories', 'CategoryController');
     Route::get('/categories/status/{id}', 'CategoryController@status')->name('categories.status');
+
+    // Company Info page routes
+    Route::resource('/company', 'CompanyController');
+    Route::get('/company/status/{id}', 'CompanyController@status')->name('company.status');
 
     // Payment Types page routes
     Route::resource('/payment_types', 'PaymentTypeController');
@@ -94,6 +97,10 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/contacts', 'ContactController@index')->name('contacts.index');
     Route::get('/contacts/readContact/{id}', 'ContactController@readContact')->name('contacts.readContact');
     Route::delete('/contacts/delete/{id}', 'ContactController@destroy')->name('contacts.destroy');
+
+    // Pages routes
+    Route::resource('/page', 'PageController');
+    Route::get('/page/status/{id}', 'PageController@status')->name('page.status');
     
 });
 

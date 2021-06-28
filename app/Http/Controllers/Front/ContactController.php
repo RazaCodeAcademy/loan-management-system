@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Contact;
+use App\Models\CompanyInfo;
 
 class ContactController extends Controller
 {
     public function index()
     {
-        return view('front.contactUs.index');
+        $info = CompanyInfo::where('status', true)->first();
+        return view('front.contactUs.index', compact('info'));
     }
     
     public function store(Request $request)
