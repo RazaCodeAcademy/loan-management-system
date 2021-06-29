@@ -40,6 +40,8 @@ Route::namespace('Front')->group(function () {
     Route::get('/reduce/{id}', 'ShopController@getReduceByOne')->name('shop.reduceByOne');
     Route::get('/remove/{id}', 'ShopController@getRemoveItem')->name('shop.removeItem');
     Route::get('/emptyCart', 'ShopController@emptyCart')->name('shop.emptyCart');
+    Route::get('/shop/checkout', 'ShopController@checkout')->name('shop.checkout');
+    Route::post('/shop/order/store', 'ShopController@orderStore')->name('shop.order.store');
 
 
     
@@ -98,6 +100,9 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     // Product page routes
     Route::resource('/products', 'ProductController');
     Route::get('/products/status/{id}', 'ProductController@status')->name('products.status');
+    
+    // Order page routes
+    Route::resource('/orders', 'OrderController');
 
     // Packages page routes
     Route::resource('/packages', 'PackageController');

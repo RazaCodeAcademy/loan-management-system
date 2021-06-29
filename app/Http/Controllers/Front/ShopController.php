@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 use App\Helper\Cart;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 
@@ -90,5 +92,39 @@ class ShopController extends Controller
     {
         Session::forget('cart');
         return back();
+    }
+
+    public function checkout()
+    {
+        $grandTotal = Session::get('grandTotal');
+        return view('front.shop.checkout', compact('grandTotal'));
+    }
+
+    public function orderStore(Request $request)
+    {
+        if (!Session::has('cart')) {
+            $product = Product::all();
+            return redirect()->route('shop', compact('product'));
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $cart->totalPrice = Session::get('grandTotal');
+
+        $order = new Order();
+        $order->cart = serialize($cart);
+        $order->name = $request->name;
+        $order->email = $request->email;
+        $order->country = $request->country;
+        $order->streetAddress = $request->streetAddress;
+        $order->city = $request->city;
+        $order->postcode = $request->postcode;
+        $order->phone = $request->phone;
+        $order->user_id = Auth::id() ?? null;
+
+        $order->save();
+
+        Session::forget('cart');
+        Session::forget('grandTotal');
+        return redirect()->route('home')->with('success', 'Successfully purchased product!');
     }
 }

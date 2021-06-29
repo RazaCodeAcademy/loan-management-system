@@ -5,8 +5,6 @@
 @section('content')
 
 	@php
-		$tax = '';
-		$discount = '';
 		$grandTotal = '';
 	@endphp
 
@@ -72,23 +70,25 @@
 				</table>
 			</div>
 			<div class="checkout-left">	
-					
-					<div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
-						<a href="mens.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back To Shopping</a>
-					</div>
-					<div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
-						<h4>Shopping basket</h4>
-						<ul>
-							@if (!empty($products))
-								@foreach ($products as $product)
-									<li>{{ $product['item']->title ?? '' }} <i>-</i> <span>Rs.{{ $product['price'] ?? '' }}</span></li>
-								@endforeach
-							@endif
-							<li>Total <i>-</i> <span>Rs.{{ Session()->has('cart') ? Session::get('cart')->totalPrice : '' }}</span></li>
-						</ul>
-					</div>
-					<div class="clearfix"> </div>
+				<div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
+					<h4>Shopping basket</h4>
+					<ul>
+						@if (!empty($products))
+							@foreach ($products as $product)
+								<li>{{ $product['item']->title ?? '' }} <i>-</i> <span>Rs.{{ $product['price'] ?? '' }}</span></li>
+							@endforeach
+						@endif
+						<li>Total <i>-</i> <span>Rs.{{ Session()->has('cart') ? ($grandTotal =  Session::get('cart')->totalPrice) : '' }}</span></li>
+					</ul>
 				</div>
+				<div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
+					@php
+						Session::put('grandTotal', $grandTotal)
+					@endphp
+					<a href="{{ route('shop.checkout') }}">CHECKOUT</a>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
 		</div>
 	</div>	
 	<!-- //check out -->

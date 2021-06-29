@@ -64,60 +64,10 @@
 
     </div>
     <!-- //banner -->
-    <!-- content -->
-
-    <div class="new_arrivals">
-        <div class="container">
-            <h3><span>new </span>arrivals</h3>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
-            <div class="new_grids">
-                <div class="col-md-4 new-gd-left">
-                    <img src="{{ asset('/public/assets/images/wed1.jpg') }}" alt=" " />
-                    <div class="wed-brand simpleCart_shelfItem">
-                        <h4>Wedding Collections</h4>
-                        <h5>Flat 50% Discount</h5>
-                        <p><i>$250</i> <span class="item_price">$500</span><a class="item_add hvr-outline-out button2" href="#">add to cart </a></p>
-                    </div>
-                </div>
-                <div class="col-md-4 new-gd-middle">
-                    <div class="new-levis">
-                        <div class="mid-img">
-                            <img src="{{ asset('/public/assets/images/levis1.png') }}" alt=" " />
-                        </div>
-                        <div class="mid-text">
-                            <h4>up to 40% <span>off</span></h4>
-                            <a class="hvr-outline-out button2" href="product.html">Shop now </a>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="new-levis">
-                        <div class="mid-text">
-                            <h4>up to 50% <span>off</span></h4>
-                            <a class="hvr-outline-out button2" href="product.html">Shop now </a>
-                        </div>
-                        <div class="mid-img">
-                            <img src="{{ asset('/public/assets/images/dig.jpg') }}" alt=" " />
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="col-md-4 new-gd-left">
-                    <img src="{{ asset('/public/assets/images/wed2.jpg') }}" alt=" " />
-                    <div class="wed-brandtwo simpleCart_shelfItem">
-                        <h4>Spring / Summer</h4>
-                        <p>Shop Men</p>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-    <!-- //content -->
 
     <!-- content-bottom -->
 
-    <div class="content-bottom" style="margin-bottom: 90px">
+    <div class="content-bottom" style="margin-bottom: 90px; margin-top: 90px">
         <div class="col-md-7 content-lgrid">
             @foreach ($services as $service)
                 @if($loop->iteration % 2 == 0)
