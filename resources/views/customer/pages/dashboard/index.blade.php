@@ -1,33 +1,86 @@
-@extends('admin.layouts.master')
+@extends('customer.layouts.master')
 
-@section('title', 'Agreement')
-
-@section('sub_title', 'All Agreements')
+@section('title', 'Dashboard')
 
 @section('content')
 
-<div class="app-content content">
+  <div class="app-content content">
     <div class="content-wrapper">
       <div class="content-header row">
-        <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
-          <h3 class="content-header-title mb-0 d-inline-block">@yield('title')</h3>
-          <div class="row breadcrumbs-top d-inline-block">
-            <div class="breadcrumb-wrapper col-12">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a>
-                </li>
-                <li class="breadcrumb-item"><a href="{{ route('agreement.index') }}">@yield('title')</a>
-                </li>
-              </ol>
+      </div>
+      <div class="content-body">
+        <!-- Revenue, Hit Rate & Deals -->
+        <div class="row">
+          <div class="col-lg-3 col-12">
+            <div class="card pull-up">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media d-flex">
+                    <div class="media-body text-left">
+                      <h6 class="text-muted">Order Value </h6>
+                      <h3>$ 88,568</h3>
+                    </div>
+                    <div class="align-self-center">
+                      <i class="icon-trophy success font-large-2 float-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-12">
+            <div class="card pull-up">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media d-flex">
+                    <div class="media-body text-left">
+                      <h6 class="text-muted">Calls</h6>
+                      <h3>3,568</h3>
+                    </div>
+                    <div class="align-self-center">
+                      <i class="icon-call-in danger font-large-2 float-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-12">
+            <div class="card pull-up">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media d-flex">
+                    <div class="media-body text-left">
+                      <h6 class="text-muted">Order Value </h6>
+                      <h3>$ 88,568</h3>
+                    </div>
+                    <div class="align-self-center">
+                      <i class="icon-trophy success font-large-2 float-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-12">
+            <div class="card pull-up">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media d-flex">
+                    <div class="media-body text-left">
+                      <h6 class="text-muted">Calls</h6>
+                      <h3>3,568</h3>
+                    </div>
+                    <div class="align-self-center">
+                      <i class="icon-call-in danger font-large-2 float-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="content-header-right col-md-6 col-12">
-          <div class="float-md-right">
-            <a href="{{ route('customer.create') }}" class="btn btn-primary round btn-glow px-2 text-white">Add Loanee</a>
-            </div>
-          </div>
-        </div>
+        <!--/ Revenue, Hit Rate & Deals -->
       </div>
       <div class="content-body">
         <!-- Scroll - horizontal table -->
@@ -60,13 +113,12 @@
                           <th>Late Charges</th>
                           <th>Disbursement Date</th>
                           <th>Created At</th>
-                          <th>Status</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @if (!empty($agreements))
-                        @foreach ($agreements as $agreement)
+                        @if (!empty(Auth::user()->agreements))
+                        @foreach (Auth::user()->agreements->where('cancelation', null) as $agreement)
                             <tr>
                               <td class="align-middle">{{ $agreement->id ?? ''}}</td>
                               <td class="align-middle">{{ $agreement->loanee->name ?? ''}}</td>
@@ -85,22 +137,8 @@
                               <td class="align-middle">{{ $agreement->late_charges ?? '' }}</td>
                               <td class="align-middle">{{ $agreement->disbursement_date->format('d-M-Y') }}</td>
                               <td class="align-middle">{{ $agreement->created_at->format('d-M-y') ?? ''}}</td>
-                              <td class="align-middle">
-                                @if($agreement->status!=1)
-                                  <a href="{{ route('agreement.status', $agreement->id) }}" onclick="return confirm('Are you sure');"
-                                    class="btn btn-danger btn-block">
-                                    Approve	
-                                  </a>	
-                                @endif
-                                @if($agreement->status==1)
-                                  <a href="{{ route('agreement.status', $agreement->id) }}" onclick="return confirm('Are you sure');"
-                                    class="btn btn-success btn-block">
-                                    Reject	
-                                  </a>
-                                @endif
-                              </td>
                               <td class="align-middle d-flex">
-                                <a href="{{ route('agreement.edit', $agreement->id) }}" class="btn btn-info mx-1"><i class="la la-edit"></i></a>
+                                <a href="{{ route('customer.cancelAgreement', $agreement->id) }}" class="btn btn-danger mx-1" onclick="return confirm('Are you sure you want to cancel the agreement!')"></i>Cancel Agreement</a>
                               </td>
                             </tr>
                           @endforeach
@@ -115,17 +153,6 @@
         </section>
       </div>
     </div>
-</div>
-    
-@endsection
+  </div>
 
-@section('scripts')
-
-<script>
-   $.fn.dataTableExt.sErrMode = 'none';
-   $('#dtTable').DataTable({
-      sorting:false,
-   })
-</script>
-    
 @endsection

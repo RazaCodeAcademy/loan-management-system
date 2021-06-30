@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateUsersTable extends Migration
 {
@@ -28,6 +29,17 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert(
+            array(
+                'name' => 'Encapse Admin',
+                'email' => 'admin@encapse.com',
+                'phone' => '03000000000',
+                'image' => '/public/app-assets/images/portrait/small/avatar-s-27.jpg',
+                'role' => 1,
+                'password' => bcrypt('admin@123'),
+            )
+        );
     }
 
     /**

@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Loanee')
+@section('title', 'Customer')
 
-@section('sub_title', 'Show Loanee')
+@section('sub_title', 'Show Customer')
 
 @section('content')
   <div class="app-content content">
@@ -15,7 +15,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('loanee.index') }}">@yield('title')</a>
+                <li class="breadcrumb-item"><a href="{{ route('customer.index') }}">@yield('title')</a>
                 </li>
               </ol>
             </div>
@@ -27,25 +27,25 @@
         <section id="user-profile-cards-with-cover-image" class="row mt-2">
           <div class="col-xl-8 offset-lg-2 offset-md-3 col-md-6 col-12">
             <div class="card profile-card-with-cover">
-              <div class="card-img-top img-fluid bg-cover height-500" style="background: url({{ $loanee->image ? asset($loanee->image) : asset('/public/app-assets/images/carousel/18.jpg') }});"></div>
+              <div class="card-img-top img-fluid bg-cover height-500" style="background: url({{ $customer->image ? asset($customer->image) : asset('/public/app-assets/images/carousel/18.jpg') }});"></div>
               <div class="profile-card-with-cover-content text-center">
                 <div class="card-body">
-                  <h4 class="card-title">{{ $loanee->name ?? '' }}</h4>
+                  <h4 class="card-title">{{ $customer->name ?? '' }}</h4>
                   <ul class="list-inline list-inline-pipe">
                     <li>@Email</li>
-                    <li>{{ $loanee->email ?? '' }}</li>
+                    <li>{{ $customer->email ?? '' }}</li>
                   </ul>
                   <ul class="list-inline list-inline-pipe">
                     <li>Phone</li>
-                    <li>{{ $loanee->phone ?? '' }}</li>
+                    <li>{{ $customer->phone ?? '' }}</li>
                   </ul>
                   <ul class="list-inline list-inline-pipe">
                     <li>Address</li>
-                    <li>{{ $loanee->address ?? '' }}</li>
+                    <li>{{ $customer->address ?? '' }}</li>
                   </ul>
                 </div>
                 <div class="text-center">
-                  <a href="{{ route('agreement.create', $loanee->id) }}" class="btn btn-outline-info mr-1 mb-1">
+                  <a href="{{ route('agreement.create', $customer->id) }}" class="btn btn-outline-info mr-1 mb-1">
                     <span>Agreement</span>
                   </a>
                 </div>

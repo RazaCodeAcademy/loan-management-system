@@ -93,13 +93,13 @@
             </li>
           </ul>
         </li>
-        <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title">Loanee</span></a>
+        <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title">Customer</span></a>
           <ul class="menu-content">
             <li>
-                <a class="menu-item" href="{{ route('loanee.index') }}">All Loanee</a>
+                <a class="menu-item" href="{{ route('customer.index') }}">All Customer</a>
             </li>
             <li>
-                <a class="menu-item" href="{{ route('loanee.create') }}">Add Loanee</a>
+                <a class="menu-item" href="{{ route('customer.create') }}">Add Customer</a>
             </li>
           </ul>
         </li>

@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Loanee')
+@section('title', 'Customer')
 
 @section('sub_title', 'Update Agreement')
 
@@ -15,7 +15,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('loanee.index') }}">@yield('title')</a>
+                <li class="breadcrumb-item"><a href="{{ route('customer.index') }}">@yield('title')</a>
                 </li>
               </ol>
             </div>

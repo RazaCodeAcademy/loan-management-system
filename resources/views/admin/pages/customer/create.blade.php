@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Loanee')
+@section('title', 'Customer')
 
-@section('sub_title', 'Create Loanee')
+@section('sub_title', 'Create Customer')
 
 @section('content')
   <div class="app-content content">
@@ -15,7 +15,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('loanee.index') }}">@yield('title')</a>
+                <li class="breadcrumb-item"><a href="{{ route('customer.index') }}">@yield('title')</a>
                 </li>
               </ol>
             </div>
@@ -31,8 +31,8 @@
               <div class="card">
                 <div class="card-content collapse show">
                   <div class="card-body">
-                    <h2 class="text-center my-1">Create Loanee</h2>
-                    <form action="{{ route('loanee.store') }}" method="post" enctype="multipart/form-data">
+                    <h2 class="text-center my-1">Create Customer</h2>
+                    <form action="{{ route('customer.store') }}" method="post" enctype="multipart/form-data">
                      <div class="form-body">
                         <div class="row">
                           <div class="col-md-12">

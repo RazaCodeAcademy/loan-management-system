@@ -43,7 +43,10 @@ Route::namespace('Front')->group(function () {
     Route::get('/shop/checkout', 'ShopController@checkout')->name('shop.checkout');
     Route::post('/shop/order/store', 'ShopController@orderStore')->name('shop.order.store');
 
+    // login and signup routes
 
+    Route::get('login', 'LoginController@index')->name('login');
+    Route::post('login', 'LoginController@login')->name('loginCheck');
     
 });
 
@@ -55,7 +58,7 @@ Route::namespace('Front')->group(function () {
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('admin')->namespace('Admin')->group(function () {
+Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function () {
 
     Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
 
@@ -93,9 +96,9 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::resource('/services', 'ServiceController');
     Route::get('/services/status/{id}', 'ServiceController@status')->name('services.status');
     
-    // Loanee page routes
-    Route::resource('/loanee', 'LoaneeController');
-    Route::get('/loanee/active_deactive/{id}', 'LoaneeController@loaneeStatus')->name('loanee.status');
+    // Customer page routes
+    Route::resource('/customer', 'CustomerController');
+    Route::get('/customer/active_deactive/{id}', 'CustomerController@customerStatus')->name('customer.status');
     
     // Product page routes
     Route::resource('/products', 'ProductController');
@@ -122,5 +125,20 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 /*--------------------------------------------------------------------------*/
 
 
-Auth::routes();
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('customer')->namespace('Customer')->middleware('customer')->group(function () {
+
+    Route::get('/dashboard', 'DashboardController@index')->name('customer.dashboard');
+    Route::get('/cancel-agreement/{id}', 'DashboardController@cancelAgreement')->name('customer.cancelAgreement');
+
+});
+
+
+/*--------------------------------------------------------------------------*/
+Auth::routes(['login' => false ],['register' => false ]);
 

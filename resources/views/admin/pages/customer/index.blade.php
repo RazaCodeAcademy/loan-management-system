@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Loanee')
+@section('title', 'Customers')
 
-@section('sub_title', 'All Loanee')
+@section('sub_title', 'All Customers')
 
 @section('content')
 
@@ -16,7 +16,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('loanee.index') }}">@yield('title')</a>
+                <li class="breadcrumb-item"><a href="{{ route('customer.index') }}">@yield('title')</a>
                 </li>
               </ol>
             </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="content-header-right col-md-6 col-12">
           <div class="float-md-right">
-            <a href="{{ route('loanee.create') }}" class="btn btn-primary round btn-glow px-2 text-white">Add Loanee</a>
+            <a href="{{ route('customer.create') }}" class="btn btn-primary round btn-glow px-2 text-white">Add customer</a>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">All Loanee</h4>
+                  <h4 class="card-title">All Customers</h4>
                   <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                   <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -63,37 +63,37 @@
                         </tr>
                       </thead>
                       <tbody>
-                        @if (!empty($loanees))
-                        @foreach ($loanees as $loanee)
+                        @if (!empty($customers))
+                        @foreach ($customers as $customer)
                             <tr>
-                              <td class="align-middle">{{ $loanee->id ?? ''}}</td>
-                              <td class="align-middle">{{ $loanee->name ?? ''}}</td>
-                              <td class="align-middle">{{ $loanee->email ?? ''}}</td>
-                              <td class="align-middle">{{ $loanee->phone ?? ''}}</td>
-                              <td class="align-middle">{{ $loanee->paymentType->title ?? ''}}</td>
+                              <td class="align-middle">{{ $customer->id ?? ''}}</td>
+                              <td class="align-middle">{{ $customer->name ?? ''}}</td>
+                              <td class="align-middle">{{ $customer->email ?? ''}}</td>
+                              <td class="align-middle">{{ $customer->phone ?? ''}}</td>
+                              <td class="align-middle">{{ $customer->paymentType->title ?? ''}}</td>
                               <td class="align-middle">
-                                <a href="{{ route('agreement.create', $loanee->id) }}" class="btn btn-info mx-1"><i class="la la-briefcase"></i></a>
+                                <a href="{{ route('agreement.create', $customer->id) }}" class="btn btn-info mx-1"><i class="la la-briefcase"></i></a>
                               </td>
                               <td class="align-middle">
-                                @if($loanee->status!=1)
-                                  <a href="{{ route('loanee.status', $loanee->id) }}" onclick="return confirm('Are you sure');"
+                                @if($customer->status!=1)
+                                  <a href="{{ route('customer.status', $customer->id) }}" onclick="return confirm('Are you sure');"
                                     class="btn btn-danger btn-block">
                                     Approve	
                                   </a>	
                                 @endif
 
-                                @if($loanee->status==1)
-                                  <a href="{{ route('loanee.status', $loanee->id) }}" onclick="return confirm('Are you sure');"
+                                @if($customer->status==1)
+                                  <a href="{{ route('customer.status', $customer->id) }}" onclick="return confirm('Are you sure');"
                                     class="btn btn-success btn-block">
                                     Reject	
                                   </a>
                                 @endif
                               </td>
-                              <td class="align-middle">{{ $loanee->created_at->format('d-M-y') ?? ''}}</td>
+                              <td class="align-middle">{{ $customer->created_at->format('d-M-y') ?? ''}}</td>
                               <td class="align-middle d-flex">
-                                <a href="{{ route('loanee.show', $loanee->id) }}" class="btn btn-success"><i class="la la-eye"></i></a>
-                                <a href="{{ route('loanee.edit', $loanee->id) }}" class="btn btn-info mx-1"><i class="la la-edit"></i></a>
-                                <form action="{{ route('loanee.destroy', $loanee->id) }}" method="post">
+                                <a href="{{ route('customer.show', $customer->id) }}" class="btn btn-success"><i class="la la-eye"></i></a>
+                                <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-info mx-1"><i class="la la-edit"></i></a>
+                                <form action="{{ route('customer.destroy', $customer->id) }}" method="post">
                                   @method('DELETE')
                                   <button type="submit" class="btn btn-danger"><i class="la la-trash"></i></button>
                                 </form>
