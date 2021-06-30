@@ -113,7 +113,7 @@
             </li>
           </ul>
         </li>
-        <li class=" nav-item"><a href="#"><i class="la icon-bag"></i><span class="menu-title">Orders</span></a>
+        <li class=" nav-item"><a href="#"><i class="la la-cart-arrow-down"></i><span class="menu-title">Orders</span></a>
           <ul class="menu-content">
             <li>
                 <a class="menu-item" href="{{ route('orders.index') }}">All Orders</a>

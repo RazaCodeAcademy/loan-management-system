@@ -26,4 +26,12 @@ class OrderController extends Controller
 
         return view('admin.pages.orders.show', compact('orders', 'orderId'));
     }
+
+    public function destroy($id)
+    {
+        $order = Order::find($id);
+        $order->delete();
+
+        return back()->with('success', 'Order deleted successfully!');
+    }
 }
