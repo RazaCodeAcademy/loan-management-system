@@ -19,6 +19,7 @@ Route::get('/clear', function() {
     return "Cache is cleared";
 });
 
+
 /*
 |--------------------------------------------------------------------------
 | Front Routes
@@ -44,9 +45,11 @@ Route::namespace('Front')->group(function () {
     Route::post('/shop/order/store', 'ShopController@orderStore')->name('shop.order.store');
 
     // login and signup routes
-
     Route::get('login', 'LoginController@index')->name('login');
     Route::post('login', 'LoginController@login')->name('loginCheck');
+
+    // whatsapp chat
+    Route::get('/chat/{number}', 'IndexController@chat')->name('chat');
     
 });
 
@@ -99,6 +102,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
     // Customer page routes
     Route::resource('/customer', 'CustomerController');
     Route::get('/customer/active_deactive/{id}', 'CustomerController@customerStatus')->name('customer.status');
+    Route::get('/customer/chat/{number}', 'CustomerController@chat')->name('customer.chat');
     
     // Product page routes
     Route::resource('/products', 'ProductController');

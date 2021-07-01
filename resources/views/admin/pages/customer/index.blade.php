@@ -6,6 +6,16 @@
 
 @section('content')
 
+  @section('css')
+      <style>
+        .la-whatsapp{
+          text-align: center;
+          font-size: 50px !important;
+          margin-left: 10px;
+        }
+      </style>
+  @endsection
+
 <div class="app-content content">
     <div class="content-wrapper">
       <div class="content-header row">
@@ -58,6 +68,7 @@
                           <th>Payment Type</th>
                           <th>Agreement</th>
                           <th>Status</th>
+                          <th>Whatsapp</th>
                           <th>Created At</th>
                           <th>Action</th>
                         </tr>
@@ -87,6 +98,11 @@
                                     class="btn btn-success btn-block">
                                     Reject	
                                   </a>
+                                @endif
+                              </td>
+                              <td class="align-middle">
+                                @if(!empty($customer->phone))
+                                  <a href="{{ route('customer.chat', $customer->phone) }}" target="_blank"><i class="la la-whatsapp text-success la-4x"></i></a>
                                 @endif
                               </td>
                               <td class="align-middle">{{ $customer->created_at->format('d-M-y') ?? ''}}</td>

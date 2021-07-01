@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Loanee')
+@section('title', 'Customer')
 
-@section('sub_title', 'Update Loanee')
+@section('sub_title', 'Update Customer')
 
 @section('content')
   <div class="app-content content">
@@ -15,7 +15,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('loanee.index') }}">@yield('title')</a>
+                <li class="breadcrumb-item"><a href="{{ route('customer.index') }}">@yield('title')</a>
                 </li>
               </ol>
             </div>
@@ -31,15 +31,15 @@
               <div class="card">
                 <div class="card-content collapse show">
                   <div class="card-body">
-                    <h2 class="text-center my-1">Update Loanee</h2>
-                    <form action="{{ route('loanee.update', $loanee->id )}}" method="post" enctype="multipart/form-data">
+                    <h2 class="text-center my-1">Update Customer</h2>
+                    <form action="{{ route('customer.update', $customer->id )}}" method="post" enctype="multipart/form-data">
                       @method('PUT')
                       <div class="form-body">
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
                               <label>Entet Name</label>
-                              <input type="text" name="name" value="{{ $loanee->name ?? ''}}" class="form-control" placeholder="Name">
+                              <input type="text" name="name" value="{{ $customer->name ?? ''}}" class="form-control" placeholder="Name">
                               @if ($errors->has('name'))
                                 @foreach ($errors->get('name') as $error)
                                   <span class="text-danger">{{ $error }}</span>
@@ -50,13 +50,13 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Enter Email</label>
-                              <input type="email" name="email" class="form-control" value="{{ $loanee->email ?? ''}}" placeholder="Email..." disabled>
+                              <input type="email" name="email" class="form-control" value="{{ $customer->email ?? ''}}" placeholder="Email..." disabled>
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Enter Phone</label>
-                              <input type="number" name="phone" value="{{ $loanee->phone ?? ''}}" class="form-control" placeholder="Phone...">
+                              <input type="number" name="phone" value="{{ $customer->phone ?? ''}}" class="form-control" placeholder="Phone...">
                                 @if ($errors->has('phone'))
                                   @foreach ($errors->get('phone') as $error)
                                     <span class="text-danger">{{ $error }}</span>
@@ -65,7 +65,7 @@
                             </div>
                           </div>
                           <div class="col-md-12">
-                            <img src="{{ asset($loanee->image) ?? '' }}" alt="" width="150">
+                            <img src="{{ asset($customer->image) ?? '' }}" alt="" width="150">
                           </div>
                           <div class="col-md-12">
                             <fieldset class="form-group">
@@ -79,7 +79,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label>Enter Address</label>
-                              <input type="text" name="address" value="{{ $loanee->address ?? ''}}" class="form-control" placeholder="Address...">
+                              <input type="text" name="address" value="{{ $customer->address ?? ''}}" class="form-control" placeholder="Address...">
                                 @if ($errors->has('address'))
                                   @foreach ($errors->get('address') as $error)
                                     <span class="text-danger">{{ $error }}</span>
@@ -95,7 +95,7 @@
                                   <option selected="">Select Option</option>
                                   @if (!empty($payment_types))
                                     @foreach ($payment_types as $payment_type)
-                                      <option value="{{ $payment_type->id }}" {{ $loanee->payment_type == $payment_type->id ? "selected" : '' }}>{{ $payment_type->title }}</option>
+                                      <option value="{{ $payment_type->id }}" {{ $customer->payment_type == $payment_type->id ? "selected" : '' }}>{{ $payment_type->title }}</option>
                                     @endforeach
                                   @endif
                                 </select>

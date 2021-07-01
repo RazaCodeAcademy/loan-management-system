@@ -19,6 +19,11 @@ class CustomerController extends Controller
         return view('admin.pages.customer.index', compact('customers'));
     }
 
+    public function chat($number)
+    {
+        return redirect('https://api.whatsapp.com/send?phone=+92'.$number);
+    }
+
     public function create()
     {
         $payment_types = PaymentType::all();

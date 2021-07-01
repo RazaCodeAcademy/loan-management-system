@@ -18,4 +18,9 @@ class IndexController extends Controller
 
         return view('index', compact('sliders','services'));
     }
+
+    public function chat($number)
+    {
+        return redirect('https://api.whatsapp.com/send?phone=+92'.$number);
+    }
 }
