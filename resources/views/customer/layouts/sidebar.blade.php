@@ -13,6 +13,12 @@
                 {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{ route('customer.payments') }}">
+                <i class="la la-money"></i>
+                <span class="menu-title" data-i18n="nav.dash.main">Payments</span>
+            </a>
+        </li>
       </ul>
     </div>
   </div>

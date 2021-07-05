@@ -7,6 +7,7 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
+ <link href="http://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"rel="stylesheet">
 <!-- //for-mobile-apps -->
 <link href="{{ asset('/public/assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
 <!-- pignose css -->

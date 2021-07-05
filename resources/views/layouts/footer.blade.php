@@ -39,14 +39,14 @@
 						<div class="login">
 							<div class="login-bottom">
 								<h3>Sign up for free</h3>
-								<form>
+								<form >
 									<div class="sign-up">
 										<h4>Email :</h4>
-										<input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">	
+										<input type="text" name="email" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">	
 									</div>
 									<div class="sign-up">
 										<h4>Password :</h4>
-										<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+										<input type="password" name="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
 										
 									</div>
 									<div class="sign-up">
@@ -62,14 +62,14 @@
 							</div>
 							<div class="login-right">
 								<h3>Sign in with your account</h3>
-								<form>
+								<form action="{{ route('loginCheck') }}" method="POST">
 									<div class="sign-in">
 										<h4>Email :</h4>
-										<input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">	
+										<input type="text" name="email" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">	
 									</div>
 									<div class="sign-in">
 										<h4>Password :</h4>
-										<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+										<input type="password" name="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
 										<a href="#">Forgot password?</a>
 									</div>
 									<div class="single-bottom">

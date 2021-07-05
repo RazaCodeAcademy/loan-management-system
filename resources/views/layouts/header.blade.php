@@ -1,3 +1,7 @@
+{{-- Floating WhatsApp --}}
+<a href="{{ route('chat', $companyInfo->contact1) }}" style="position: fixed; bottom: 50px; right:50px; z-index: 100; display: inline-block;padding: 10px; border-radius: 50%; background: #f6f6f6;  box-shadow: 0 0 8px rgb(0,0,0,0.2);">
+	<i class="la la-whatsapp text-success la-4x " style="font-size: 50px"></i>
+</a>
 
 <!-- header-bot -->
 <div class="header-bot">
@@ -5,7 +9,7 @@
 		<div class="col-md-3 header-left">
 			<h1><a href="{{ route('home') }}"><img src="{{ !empty($companyInfo->logo) ? asset($companyInfo->logo) : asset('/public/assets/images/logo3.jpg') }}"></a></h1>
 		</div>
-		<div class="col-md-6 header-middle">
+		{{-- <div class="col-md-6 header-middle">
 			<form>
 				<div class="search">
 					<input type="search" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" required="">
@@ -15,10 +19,10 @@
 				</div>
 				<div class="clearfix"></div>
 			</form>
-		</div>
-		<div class="col-md-3 header-right footer-bottom">
+		</div> --}}
+		<div class="col header-right footer-bottom">
 			<ul>
-				<li><a href="#" class="use1" data-toggle="modal" data-target="#myModal4"><span>Login</span></a></li>
+				<li style="position: relative;"><a href="#" class="use1" data-toggle="modal" data-target="#myModal4"><span>Login</span></a></li>
 			</ul>
 		</div>
 		<div class="clearfix"></div>

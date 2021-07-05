@@ -114,22 +114,24 @@
         </div>
         <div class="col-md-5 content-rgrid text-center">
             <div class="content-grid-effect slow-zoom vertical">
-                    <div class="img-box"><img src="{{ asset('/public/assets/images/p4.jpg') }}" alt="image" class="img-responsive zoom-img"></div>
-                        <div class="info-box">
-                            <div class="info-content simpleCart_shelfItem">
-                                        <h4>Shoes</h4>
-                                        <span class="separator"></span>
-                                        <p><span class="item_price">$150</span></p>
-                                        <span class="separator"></span>
-                                        <a class="item_add hvr-outline-out button2" href="#">add to cart </a>
-                            </div>
+                <div class="img-box"><img src="{{ asset('/public/assets/images/p4.jpg') }}" alt="image" class="img-responsive zoom-img"></div>
+                    <div class="info-box">
+                        <div class="info-content simpleCart_shelfItem">
+                            <h4>Shoes</h4>
+                            <span class="separator"></span>
+                            <p><span class="item_price">$150</span></p>
+                            <span class="separator"></span>
+                            <a class="item_add hvr-outline-out button2" href="#">add to cart </a>
                         </div>
-                </div>
+                    </div>
+            </div>
         </div>
         <div class="clearfix"></div>
     </div>
     <!-- //content-bottom -->
 
+
+ 
 
     
 @endsection

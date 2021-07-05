@@ -103,6 +103,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('admin')->group(function 
     Route::resource('/customer', 'CustomerController');
     Route::get('/customer/active_deactive/{id}', 'CustomerController@customerStatus')->name('customer.status');
     Route::get('/customer/chat/{number}', 'CustomerController@chat')->name('customer.chat');
+    Route::post('/customer/upload/photo', 'CustomerController@UploadPhoto')->name('customer.UploadPhoto');
     
     // Product page routes
     Route::resource('/products', 'ProductController');
@@ -139,6 +140,7 @@ Route::prefix('customer')->namespace('Customer')->middleware('customer')->group(
 
     Route::get('/dashboard', 'DashboardController@index')->name('customer.dashboard');
     Route::get('/cancel-agreement/{id}', 'DashboardController@cancelAgreement')->name('customer.cancelAgreement');
+    Route::get('/customer-payments', 'DashboardController@payments')->name('customer.payments');
 
 });
 

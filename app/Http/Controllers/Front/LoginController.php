@@ -30,10 +30,10 @@ class LoginController extends Controller
                 }elseif(2 == Auth::user()->role){
                     return redirect()->route('customer.dashboard');
                 }else{
-                    return redirect()->route('login')->with('feedback', 'Your account is deactivated! please contact to admininistration');
+                    return back()->with('feedback', 'Your account is deactivated! please contact to admininistration');
                 }
         } else {
-            return redirect()->route('login')->with('feedback', 'Enter correct email and password!');
+            return back()->with('feedback', 'Enter correct email and password!');
         }
     }
 }

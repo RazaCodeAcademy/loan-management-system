@@ -17,11 +17,11 @@
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h6 class="text-muted">Order Value </h6>
-                      <h3>$ 88,568</h3>
+                      <h6 class="text-muted">Total Agreements </h6>
+                      <h3>{{ $agreements ?? 0 }}</h3>
                     </div>
                     <div class="align-self-center">
-                      <i class="icon-trophy success font-large-2 float-right"></i>
+                      <i class="la la-briefcase success font-large-2 float-right"></i>
                     </div>
                   </div>
                 </div>
@@ -34,11 +34,11 @@
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h6 class="text-muted">Calls</h6>
-                      <h3>3,568</h3>
+                      <h6 class="text-muted">Total Payments</h6>
+                      <h3>{{ $payments ?? 0 }}</h3>
                     </div>
                     <div class="align-self-center">
-                      <i class="icon-call-in danger font-large-2 float-right"></i>
+                      <i class="la la-credit-card danger font-large-2 float-right"></i>
                     </div>
                   </div>
                 </div>
@@ -51,11 +51,11 @@
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h6 class="text-muted">Order Value </h6>
-                      <h3>$ 88,568</h3>
+                      <h6 class="text-muted">Total Amounts </h6>
+                      <h3>Rs. {{ $amounts ?? 0 }}</h3>
                     </div>
                     <div class="align-self-center">
-                      <i class="icon-trophy success font-large-2 float-right"></i>
+                      <i class="la la-money success font-large-2 float-right"></i>
                     </div>
                   </div>
                 </div>
@@ -68,11 +68,11 @@
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h6 class="text-muted">Calls</h6>
-                      <h3>3,568</h3>
+                      <h6 class="text-muted">Total Installments</h6>
+                      <h3>{{ $installments ?? 0 }}</h3>
                     </div>
                     <div class="align-self-center">
-                      <i class="icon-call-in danger font-large-2 float-right"></i>
+                      <i class="la la-reorder danger font-large-2 float-right"></i>
                     </div>
                   </div>
                 </div>
@@ -155,4 +155,15 @@
     </div>
   </div>
 
+@endsection
+
+@section('scripts')
+
+<script>
+   $.fn.dataTableExt.sErrMode = 'none';
+   $('#dtTable').DataTable({
+      sorting:false,
+   })
+</script>
+    
 @endsection

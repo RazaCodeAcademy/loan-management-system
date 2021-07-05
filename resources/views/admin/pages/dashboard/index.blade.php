@@ -17,11 +17,11 @@
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h6 class="text-muted">Order Value </h6>
-                      <h3>$ 88,568</h3>
+                      <h6 class="text-muted">Total Customers </h6>
+                      <h3>{{ $customer ?? 0 }}</h3>
                     </div>
                     <div class="align-self-center">
-                      <i class="icon-trophy success font-large-2 float-right"></i>
+                      <i class="la la-users success font-large-2 float-right"></i>
                     </div>
                   </div>
                 </div>
@@ -34,8 +34,8 @@
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h6 class="text-muted">Calls</h6>
-                      <h3>3,568</h3>
+                      <h6 class="text-muted">Total Agreement</h6>
+                      <h3>{{ $agreements ?? 0 }}</h3>
                     </div>
                     <div class="align-self-center">
                       <i class="icon-call-in danger font-large-2 float-right"></i>
@@ -51,8 +51,8 @@
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h6 class="text-muted">Order Value </h6>
-                      <h3>$ 88,568</h3>
+                      <h6 class="text-muted">Total Orders</h6>
+                      <h3>{{ $orders ?? 0 }}</h3>
                     </div>
                     <div class="align-self-center">
                       <i class="icon-trophy success font-large-2 float-right"></i>
@@ -68,11 +68,11 @@
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h6 class="text-muted">Calls</h6>
-                      <h3>3,568</h3>
+                      <h6 class="text-muted">Total Amounts</h6>
+                      <h3>Rs. {{ $amounts }}</h3>
                     </div>
                     <div class="align-self-center">
-                      <i class="icon-call-in danger font-large-2 float-right"></i>
+                      <i class="la la-money danger font-large-2 float-right"></i>
                     </div>
                   </div>
                 </div>

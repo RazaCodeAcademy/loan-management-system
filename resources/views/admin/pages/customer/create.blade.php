@@ -5,6 +5,7 @@
 @section('sub_title', 'Create Customer')
 
 @section('content')
+
   <div class="app-content content">
     <div class="content-wrapper">
       <div class="content-header row">
@@ -38,7 +39,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label>Entet Name</label>
-                              <input type="text" name="name" class="form-control" placeholder="Name">
+                              <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="Name">
                               @if ($errors->has('name'))
                                 @foreach ($errors->get('name') as $error)
                                   <span class="text-danger">{{ $error }}</span>
@@ -49,7 +50,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Enter Email</label>
-                              <input type="email" name="email" class="form-control" placeholder="Email...">
+                              <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email...">
                                 @if ($errors->has('email'))
                                   @foreach ($errors->get('email') as $error)
                                     <span class="text-danger">{{ $error }}</span>
@@ -60,7 +61,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Enter Phone</label>
-                              <input type="number" name="phone" class="form-control" placeholder="Phone...">
+                              <input type="number" name="phone" value="{{ old('phone') }}" class="form-control" placeholder="Phone...">
                                 @if ($errors->has('phone'))
                                   @foreach ($errors->get('phone') as $error)
                                     <span class="text-danger">{{ $error }}</span>
@@ -72,20 +73,18 @@
                             <fieldset class="form-group">
                               <label>Choose Image</label>
                               <div class="custom-file">
-                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
+                                <input type="file"id="uploadImage" class="custom-file-input">
+                                <input type="hidden" name="image" id="customerImage" />
                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                @if ($errors->has('image'))
-                                  @foreach ($errors->get('image') as $error)
-                                    <span class="text-danger">{{ $error }}</span>
-                                  @endforeach
-                                @endif
+                                <br />
+                                <span id="uploaded_image"></span>
                               </div>
                             </fieldset>
                           </div>
                           <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                               <label>Enter Address</label>
-                              <input type="text" name="address" class="form-control" placeholder="Address...">
+                              <input type="text" name="address" value="{{ old('address') }}" class="form-control" placeholder="Address...">
                                 @if ($errors->has('address'))
                                   @foreach ($errors->get('address') as $error)
                                     <span class="text-danger">{{ $error }}</span>
@@ -113,7 +112,7 @@
                               <label for="password">
                                 {{ __('Password') }}
                               </label>
-                              <input type="password" name="password" class="form-control m-input m-input--air" placeholder="Password" required>
+                              <input type="password" name="password" value="{{ old('password') }}" class="form-control m-input m-input--air" placeholder="Password" required>
                               @if ($errors->has('password'))
                                 <span class="text-danger">
                                   <strong>{{ $errors->first('password') }}</strong>
@@ -148,4 +147,40 @@
       </div>
     </div>
   </div>
+  
+@endsection
+
+@section('scripts')
+  <script>
+    $(document).ready(function(){
+      $(document).on('change', '#uploadImage', function(){
+        var name = document.getElementById("uploadImage").files[0].name;
+        var form_data = new FormData();
+        
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+        var f = document.getElementById("uploadImage").files[0];
+        // upload image
+        form_data.append("image", document.getElementById('uploadImage').files[0]);
+        $.ajax({
+          url: '{{ route("customer.UploadPhoto") }}',
+          method:"POST",
+          data: form_data,
+          contentType: false,
+          cache: false,
+          processData: false,
+          beforeSend:function(){
+            $('#uploaded_image').html("<label class='text-success'>Image Uploading...</label>");
+          },   
+          success:function(data)
+          {
+            $('#customerImage').val(data);
+            var image = `<img src="{{ asset('Image') }}" width="60">`;
+            image = image.replace('Image', data);
+            $('#uploaded_image').html(image);
+          }
+        });
+      });
+    });
+  </script>
 @endsection

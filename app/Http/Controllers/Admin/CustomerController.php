@@ -32,9 +32,9 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'name' => 'required',
-            'image' => 'required',
             'email' => 'required',
             'phone' => 'required',
             'address' => 'required',
@@ -57,18 +57,7 @@ class CustomerController extends Controller
 
         $customer->role = 2;
 
-
-        if ($request->hasfile('image')) {
-            $file = $request->file('image');
-            $name = $file->getClientOriginalName();
-            $extension = $file->getClientOriginalExtension();
-            $name = pathinfo($name, PATHINFO_FILENAME);
-            $filename = $name.time(). '.' .$extension;
-            $file->move('public/uploads/customers/',$filename);
-            $customer->image = '/public/uploads/customers/'.$filename;
-        }else{
-            $customer->image = null;
-        }
+        $customer->image = $request->image;
 
         if($customer->save()){
             return redirect()->route('customer.index')->with('success', 'customer Added Successfuly!');
@@ -141,8 +130,6 @@ class CustomerController extends Controller
     {
         $customer = User::find($id);
 
-        $customer->delete();
-
         if($customer->delete()){
             return redirect()->route('customer.index')->with('success', 'customer Deleted Successfuly!');
         }else{
@@ -164,4 +151,18 @@ class CustomerController extends Controller
             return redirect()->route('customer.index')->with('error', 'customer DeActivated Successfuly!');
         }
     }
+
+    public function UploadPhoto(Request $request)
+    {
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $name = pathinfo($name, PATHINFO_FILENAME);
+            $filename = $name.time(). '.' .$extension;
+            $file->move('public/uploads/customers/',$filename);
+            return  '/public/uploads/customers/'.$filename;
+        }
+    }
+
 }
