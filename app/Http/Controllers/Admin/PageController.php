@@ -90,9 +90,12 @@ class PageController extends Controller
     {
         $page = Page::find($id);
 
-        $filePath = public_path(str_replace('/public/', '', $page->image));
+        if($page->image){
 
-        file_exists($filePath) ? unlink($filePath) : "";
+            $filePath = public_path(str_replace('/public/', '', $page->image));
+
+            file_exists($filePath) ? unlink($filePath) : "";
+        }
 
         if($page->delete()){
             return redirect()->route('page.index')->with('success', 'Page Deleted Successfuly!');

@@ -2,7 +2,7 @@
 
 @section('title', 'Pages')
 
-@section('sub_title', 'Create Pages')
+@section('sub_title', 'Create Page')
 
 @section('content')
   <div class="app-content content">
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="content-body">
-        
+
         <!-- Grid With Label start -->
         <section class="grid-with-label" id="grid-with-label">
           <div class="row">
@@ -51,7 +51,7 @@
                             <fieldset class="form-group">
                               <label>Choose Image</label>
                               <div class="custom-file">
-                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile01" required>
+                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                               </div>
                             </fieldset>

@@ -1,6 +1,6 @@
 @extends('customer.layouts.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Payments')
 
 @section('content')
 
@@ -75,5 +75,5 @@
       sorting:false,
    })
 </script>
-    
+
 @endsection

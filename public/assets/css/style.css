@@ -97,7 +97,7 @@ label {
     margin-top: 11px;
 }
 .header-bot {
-    padding: 25px 0;
+    /* padding: 25px 0; */
 }
 .header-right ul li {
     display: inline-block;

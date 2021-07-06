@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Loans')
+@section('title', 'Payment Types')
 
-@section('sub_title', 'Create Loan')
+@section('sub_title', 'Create Payment Types')
 
 @section('content')
   <div class="app-content content">
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="content-body">
-        
+
         <!-- Grid With Label start -->
         <section class="grid-with-label" id="grid-with-label">
           <div class="row">
