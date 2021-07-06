@@ -4,8 +4,13 @@
 
 @section('content')
 
+    @section('css')
+        <link rel="stylesheet" href="https://cdn.boomcdn.com/libs/owl-carousel/2.3.4/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="https://cdn.boomcdn.com/libs/owl-carousel/2.3.4/assets/owl.theme.default.min.css">
+    @endsection
+
     <!-- banner -->
-    <div class="banner-grid">
+    {{-- <div class="banner-grid">
         <div id="visual">
             <div class="slide-visual">
                 <!-- Slide Image Area (1000 x 424) -->
@@ -38,6 +43,17 @@
         //]]>
         </script>
 
+    </div> --}}
+
+    <!-- Set up your HTML -->
+    <div class="owl-carousel owl-theme" >
+        @if (!empty($sliders))
+            @foreach ($sliders as $slider)
+                <div>
+                    <img class="img-responsive" style="height: 75vh; object-fit: cover;" src="{{ $slider->image ? asset($slider->image) : asset('/public/assets/images/ba2.jpg') }}" alt="{{ $slider->title }}" />
+                </div>
+            @endforeach
+        @endif
     </div>
     <!-- //banner -->
 
@@ -105,5 +121,40 @@
         <div class="clearfix"></div>
     </div>
     <!-- //content-bottom -->
+
+@endsection
+
+@section('scripts')
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://cdn.boomcdn.com/libs/owl-carousel/2.3.4/owl.carousel.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            // $(".owl-carousel").owlCarousel();
+
+            $('.owl-carousel').owlCarousel({
+                loop:true,
+                margin:10,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:1,
+                        nav:false,
+                    },
+                    600:{
+                        items:1,
+                        nav:false
+                    },
+                    1000:{
+                        items:1,
+                        nav:false,
+                        loop:false
+                    }
+                }
+            })
+        });
+    </script>
+
 
 @endsection

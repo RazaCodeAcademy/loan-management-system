@@ -31,4 +31,4 @@
 	@endphp
 @endif
 
-@section('scripts')
+@yield('scripts')
