@@ -17,7 +17,7 @@
 					<h3 >Smart Shop</h3>
 				</a>
 			</div>
-			<div class="col-8">
+			<div class="col-xs-8">
 				<nav class="navbar navbar-default">
 					<div class="container-fluid">
 						<!-- Brand and toggle get grouped for better mobile display -->
@@ -58,7 +58,7 @@
 					</div>
 				@endif
 			</div>
-			<div class="col-2">
+			<div class="col-xs-4">
 				<div class="" style="text-align: right;">
 					<a href="#" class="use1" data-toggle="modal" data-target="#myModal4" style="display: inline-block; padding:19px;">
 						<span>

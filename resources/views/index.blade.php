@@ -7,6 +7,20 @@
     @section('css')
         <link rel="stylesheet" href="https://cdn.boomcdn.com/libs/owl-carousel/2.3.4/assets/owl.carousel.min.css">
         <link rel="stylesheet" href="https://cdn.boomcdn.com/libs/owl-carousel/2.3.4/assets/owl.theme.default.min.css">
+        <style>
+            .hero-cover{
+                background: url('{{ $slider->image ? asset($slider->image) : asset('/public/assets/images/ba2.jpg') }}') no-repeat;
+                background-position: top;
+                background-size: 100%;
+                height: 90vh;
+            }
+
+            @media (max-width: 576px){
+                .hero-cover{
+                    height: 200px;
+                }
+            }
+        </style>
     @endsection
 
     <!-- banner -->
@@ -55,8 +69,8 @@
     </div> -->
     <div>
         @if (!empty($slider))
-            <div>
-                <img class="cover-img img-responsive"  src="{{ $slider->image ? asset($slider->image) : asset('/public/assets/images/ba2.jpg') }}" alt="{{ $slider->title }}" />
+            <div class="hero-cover">
+                <!-- <img class="cover-img img-responsive"  src="{{ $slider->image ? asset($slider->image) : asset('/public/assets/images/ba2.jpg') }}" alt="{{ $slider->title }}" /> -->
             </div>
         @endif
     </div>
