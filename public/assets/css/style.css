@@ -5303,4 +5303,50 @@ td.invert-image a img {
         height: auto;
     }
 }
+
+.box-section {
+    padding: 60px 0;
+    background-color: #f6f6f6;
+}
+
+.box {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.box > *:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.box-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box h4 {
+    font-size: 18px;
+    color: #191919;
+}
+
+.box p {
+    font-size: 13px;
+    color: #969696;
+}
+
+.box button {
+    padding: 15px 20px;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    background-color: #67c890;
+    font-size: 12px;
+    outline: 0;
+    border: 0;
+}
 /*-- //responsive media queries --*/
