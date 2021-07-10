@@ -12,11 +12,11 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $sliders = HomeSlider::where('status', 1)->get(); 
+        $slider = HomeSlider::where('status', 1)->first(); 
 
         $services = Service::where('status', 1)->get();
 
-        return view('index', compact('sliders','services'));
+        return view('index', compact('slider','services'));
     }
 
     public function chat($number)

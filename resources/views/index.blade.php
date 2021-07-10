@@ -7,6 +7,20 @@
     @section('css')
         <link rel="stylesheet" href="https://cdn.boomcdn.com/libs/owl-carousel/2.3.4/assets/owl.carousel.min.css">
         <link rel="stylesheet" href="https://cdn.boomcdn.com/libs/owl-carousel/2.3.4/assets/owl.theme.default.min.css">
+        <style>
+            .hero-cover{
+                background: url('{{ $slider->image ? asset($slider->image) : asset('/public/assets/images/ba2.jpg') }}') no-repeat;
+                background-position: top;
+                background-size: 100%;
+                height: 90vh;
+            }
+
+            @media (max-width: 576px){
+                .hero-cover{
+                    height: 200px;
+                }
+            }
+        </style>
     @endsection
 
     <!-- banner -->
@@ -44,13 +58,20 @@
     </div> --}}
 
     <!-- Set up your HTML -->
-    <div class="owl-carousel owl-theme" >
+    <!-- <div class="owl-carousel owl-theme" >
         @if (!empty($sliders))
             @foreach ($sliders as $slider)
                 <div>
                     <img class="img-responsive" style="height: 75vh; object-fit: cover;" src="{{ $slider->image ? asset($slider->image) : asset('/public/assets/images/ba2.jpg') }}" alt="{{ $slider->title }}" />
                 </div>
             @endforeach
+        @endif
+    </div> -->
+    <div>
+        @if (!empty($slider))
+            <div class="hero-cover">
+                <!-- <img class="cover-img img-responsive"  src="{{ $slider->image ? asset($slider->image) : asset('/public/assets/images/ba2.jpg') }}" alt="{{ $slider->title }}" /> -->
+            </div>
         @endif
     </div>
     <!-- //banner -->
