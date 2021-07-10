@@ -130,14 +130,14 @@
 
     <!-- content-bottom -->
 
-    <div class="content-bottom" style="margin-bottom: 90px; margin-top: 90px">
+    <!-- <div class="content-bottom" style="margin-bottom: 90px; margin-top: 90px">
         <div class="col-md-7 content-lgrid">
             @foreach ($services as $service)
                 @if($loop->iteration % 2 == 0)
                     <div class="col-sm-6 content-img-right">
                         <h3>{{ $service->description }}<span>{{ $service->title }}</span> {{ $service->category->title }}</h3>
                     </div>
-                    <div class="col-sm-6 content-img-left text-center">
+                    <div class="text-center col-sm-6 content-img-left">
                         <div class="content-grid-effect slow-zoom vertical">
                             <div class="img-box"><img src="{{ asset($service->image) }}" alt="image" class="img-responsive zoom-img"></div>
                                 <div class="info-box">
@@ -153,7 +153,7 @@
                     </div>
                 @else
 
-                    <div class="col-sm-6 content-img-left text-center">
+                    <div class="text-center col-sm-6 content-img-left">
                         <div class="content-grid-effect slow-zoom vertical">
                             <div class="img-box"><img src="{{ asset('/public/assets/images/p1.jpg') }}" alt="image" class="img-responsive zoom-img"></div>
                                 <div class="info-box">
@@ -175,7 +175,7 @@
             @endforeach
 
         </div>
-        <div class="col-md-5 content-rgrid text-center">
+        <div class="text-center col-md-5 content-rgrid">
             <div class="content-grid-effect slow-zoom vertical">
                 <div class="img-box"><img src="{{ asset('/public/assets/images/p4.jpg') }}" alt="image" class="img-responsive zoom-img"></div>
                     <div class="info-box">
@@ -190,7 +190,7 @@
             </div>
         </div>
         <div class="clearfix"></div>
-    </div>
+    </div> -->
     <!-- //content-bottom -->
 
 @endsection

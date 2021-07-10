@@ -18,7 +18,7 @@
 				</a>
 			</div>
 			<div class="col-xs-8 col-md-8">
-				<nav class="navbar navbar-default">
+				<nav class="navbar navbar-default" style="position: relative;">
 					<div class="container-fluid">
 						<!-- Brand and toggle get grouped for better mobile display -->
 						<div class="navbar-header">
@@ -45,7 +45,7 @@
 					</div>
 				</nav>
 				@if ($title == 'Shop')
-					<div class="top_nav_right">
+					<div class="top_nav_right" style="position:absolute; right: 0; transform: translateX(50%);">
 						<div class="cart box_1">
 							<a href="{{ route('shop.cart') }}">
 								<h3> <div class="total">
