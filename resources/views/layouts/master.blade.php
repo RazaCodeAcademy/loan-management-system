@@ -4,7 +4,7 @@
 
     <head>
 
-        @include('layouts.head');
+        @include('layouts.head')
 
     </head>
 
