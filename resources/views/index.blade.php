@@ -5,8 +5,7 @@
 @section('content')
 
     @section('css')
-        <link rel="stylesheet" href="https://cdn.boomcdn.com/libs/owl-carousel/2.3.4/assets/owl.carousel.min.css">
-        <link rel="stylesheet" href="https://cdn.boomcdn.com/libs/owl-carousel/2.3.4/assets/owl.theme.default.min.css">
+        
     @endsection
 
     <!-- banner -->
