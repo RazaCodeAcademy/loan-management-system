@@ -1,6 +1,6 @@
-<div class="coupons">
+<!-- <div class="coupons">
 	<div class="container">
-		<div class="coupons-grids text-center">
+		<div class="text-center coupons-grids">
 			<div class="col-md-3 coupons-gd">
 				<h3>Buy your product in a simple way</h3>
 			</div>
@@ -25,7 +25,7 @@
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <!-- login -->
 	<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -95,7 +95,14 @@
 <div class="footer">
 	<div class="container">
 		<div class="col-md-3 footer-left">
-			<h2><a href="index.html"><img src="{{ $companyInfo->logo ? asset($companyInfo->logo) : asset('/public/assets/images/logo3.jpg') }}" alt="{{ $companyInfo->name }} " /></a></h2>
+			<!-- <h2>
+			  <a href="index.html">
+				<img src="{{ $companyInfo->logo ? asset($companyInfo->logo) : asset('/public/assets/images/logo3.jpg') }}" alt="{{ $companyInfo->name }} " />
+			  </a>
+			</h2> -->
+			<a href="http://localhost/loan-management-system" style="color: #191919; display:inline-block; padding:23px 0;">
+					<h3 >Smart Shop</h3>
+			</a>
 			<p>{{ $companyInfo->description }}</p>
 		</div>
 		<div class="col-md-9 footer-right">
