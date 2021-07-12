@@ -58,6 +58,14 @@ data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
                 </div>
                 <div class="card-content">
                   <div class="card-body">
+                    @if (session()->has('feedback'))
+                        <div class="alert alert-danger" role="alert" id="succMsg">
+                            {{ session()->get('feedback') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <form class="form-horizontal form-simple" action="{{ route('loginCheck') }}" method="POST" novalidate>
                       <fieldset class="form-group position-relative has-icon-left mb-0">
                         <input type="email" name="email" class="form-control form-control-lg input-lg" id="user-name" placeholder="Your Email"
@@ -72,7 +80,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
                         <div class="form-control-position">
                           <i class="la la-key"></i>
                         </div>
-                    </fieldset>
+                       </fieldset>
                       <button type="submit" class="btn btn-info btn-lg btn-block"><i class="ft-unlock"></i> Login</button>
                     </form>
                   </div>
